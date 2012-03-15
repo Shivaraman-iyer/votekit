@@ -10,11 +10,11 @@ var express = require('express')
 //create server
 var app = module.exports = express.createServer('127.0.0.1');
 //connect to the votekit engine
-votekit = require('votekit-engine');
+votekit = require('./votekit/votekit-engine.js');
 votekit.connect('localhost', 'newdb');
 
-connect = require('connect');
-auth = require('connect-auth');//what iis this for?
+//connect = require('connect');
+//auth = require('connect-auth');//what iis this for?
 // Configuration
 
 app.configure(function(){
