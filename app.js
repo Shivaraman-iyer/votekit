@@ -49,8 +49,13 @@ app.get('/', function(req, res){
     console.log("here: app.get(sth sth)");
 
 });
+/*sample = {'poll_issue': 'Sample poll'        
+};
+app.post('/', function(sample, res){
+    console.log('app.post');//sample.poll_issue);
+    });
 //votekit.post('/create', routes.index);
-//votekit.get('/get');
+//votekit.get('/get');*/
 if(!module.parent){
 app.listen(3000);
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
