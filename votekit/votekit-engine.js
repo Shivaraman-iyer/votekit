@@ -1,5 +1,5 @@
 VSchemas = require('./votekit-schemas');
-VSchemas = require('./poll-functions');
+//VSchemas = require('./poll-functions');
 
 module.exports.connect = function(server, db, callback) {
    mongoose.connect('mongodb://' + server + '/' + db, callback);

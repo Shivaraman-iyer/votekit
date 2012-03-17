@@ -7,7 +7,8 @@ require('./schemas/poll.js');
 require('./schemas/post.js');
 
 module.exports.Post = mongoose.model('post');
+module.exports.Poll = mongoose.model('poll');
 
-module.exports.model = function(modelName) {
+/*module.exports.model = function(modelName) {
     return mongoose.model(modelName);
-}
+}*/
