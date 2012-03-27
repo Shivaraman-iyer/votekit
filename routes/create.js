@@ -1,4 +1,4 @@
-app.post('/create', function(req, res){
+app.post('/api/poll', function(req, res){
     //Create an object which reads data from req
 //    var poll = {
   //      poll_issue: req.body.poll_issue//How is poll issue passed in req?
