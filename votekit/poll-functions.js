@@ -1,5 +1,3 @@
-//require('./utils.js');
-
 // create a post + content pair from the received object
 function createPost(object, callback) {
     post = new VSchemas.Post();
