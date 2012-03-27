@@ -11,3 +11,4 @@ module.exports.disconnect = function() {
  
  module.exports.publishPoll = publish;
  module.exports.getPost = getPost;
+ module.exports.getTest = getTest;

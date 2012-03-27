@@ -45,11 +45,13 @@ require('./routes/read.js');
 require('./routes/delete.js');
 require('./routes/update.js');
 
-app.get('/', function(req, res){
+/*app.get('/', function(req, res){
 //    res.send("Hello World!");
     console.log("here: app.get(sth sth)");
 
-});
+});*/
+
+getTest();
 /*sample = {'poll_issue': 'Sample poll'        
 };
 app.post('/', function(sample, res){

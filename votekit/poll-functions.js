@@ -1,3 +1,18 @@
+var rest = require('restler');
+
+//test function
+getTest = function getTest(){                                                                                                                             
+     rest.get('http://google.com').on('complete', function(result) {
+       if (result instanceof Error) {
+    //           sys.puts('Error: ' + result.message);
+                 this.retry(5000); // try again after 5 sec
+                     } else {
+                            // sys.puts(result);
+                            console.log('rest.get call');
+                               }
+ });
+ };
+
 // create a post + content pair from the received object
 function createPost(object, callback) {
     post = new VSchemas.Post();
