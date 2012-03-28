@@ -16,10 +16,8 @@ getTest = function getTest(){
 // create a post + content pair from the received object
 function createPost(object, callback) {
     post = new VSchemas.Post();
-    //ContentModel = VSchemas.model(object.data.postType);
-    //contentObj = new ContentModel();
     poll = new VSchemas.Poll();
-    // create a content object from data.content
+//    console.log(object.poll);
     poll.create(object.poll, function(err) {  if(err) callback(err);  else {
         // change the value of data.content to the ID of the content object, because that is what the schema wants
         object.poll = poll._id;

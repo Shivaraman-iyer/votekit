@@ -16,7 +16,7 @@ PostSchema = new Schema({
 });
 
 PostSchema.methods.create = function create(object, callback) {
-    if(!object.who || !object.visibility || !object.data.poll)
+    if(!object.who || !object.visibility || !object.poll)
         callback(new Error("PostSchema.methods.create: Bad arguments"));
     else {
         // date will be generated upon actual object creation, not client-side
