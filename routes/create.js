@@ -4,7 +4,8 @@ app.post('/api/poll', function(req, res){
   //      poll_issue: req.body.poll_issue//How is poll issue passed in req?
    // };
     var post = req.body.post;
-    console.log("data to post rcvd: ", req.body);
+    console.log("Posted data rcvd: ", req.body);
+    
     
     //Publish this poll
 

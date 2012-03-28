@@ -44,21 +44,38 @@ require('./routes/read.js');
 require('./routes/delete.js');
 require('./routes/update.js');
 
-/*app.get('/', function(req, res){
-//    res.send("Hello World!");
-    console.log("here: app.get(sth sth)");
 
-});*/
-
-//getTest();
-/*sample = {'poll_issue': 'Sample poll'        
-};
-app.post('/', function(sample, res){
-    console.log('app.post');//sample.poll_issue);
-    });
-//votekit.post('/create', routes.index);
-//votekit.get('/get');*/
 if(!module.parent){
 app.listen(3000);
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
 }
+
+/*var post_data = JSON.stringify({
+    who : 'aakriti',
+    visibility : 'public'
+    });
+console.log('Posting data: ', post_data);
+
+var options = {
+      host: 'localhost',
+      port: 3000,
+      path: '/api/poll',
+      method: 'POST'
+};
+
+var req = http.request(options, function(res) {
+      console.log('STATUS: ' + res.statusCode);
+      console.log('HEADERS: ' + JSON.stringify(res.headers));
+      res.setEncoding('utf8');
+      res.on('data', function (chunk) {
+      console.log('BODY: ' + chunk);
+                      });
+});
+
+req.on('error', function(e) {
+      console.log('problem with request: ' + e.message);
+});
+
+// write data to request body
+req.write(post_data);
+req.end();*/
