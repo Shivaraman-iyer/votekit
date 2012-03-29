@@ -3,10 +3,7 @@ app.post('/api/poll', function(req, res){
 //    var poll = {
   //      poll_issue: req.body.poll_issue//How is poll issue passed in req?
    // };
-    var post = req.body.post;
-    console.log("Posted data rcvd: ", req.body);
-    
-    
+    console.log('Data rcvd: ', req.body.poll);    
     //Publish this poll
 
     //TODO: Will this var 'votekit' be defined in the app using this api alwaysshi?

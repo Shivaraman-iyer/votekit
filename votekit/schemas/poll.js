@@ -1,9 +1,4 @@
 PollSchema = new Schema({
-    when: {
-        type: Date, 
-        default: Date(), //?
-        required: true
-        },
     /*Whether this is an option, option to options,
       or a poll alone.*/
       what: {
@@ -84,7 +79,9 @@ PollSchema = new Schema({
 
 PollSchema.methods.create = function create(object, callback) {
     if(!object.content_type || !object.option_type || !object.comments_enabled || !object.data.content)
-        callback(new Error("PollSchema.methods.create: Bad arguments"));
+        //callback(new Error("PollSchema.methods.create: Bad arguments"));TODO Error class?
+	//callback("PollSchema.methods.create: Bad arguments");
+    ;
     else {
         // date will be generated upon actual object creation, not client-side
         this.what = object.what;
