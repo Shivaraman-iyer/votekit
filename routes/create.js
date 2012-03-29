@@ -3,11 +3,10 @@ app.post('/api/poll', function(req, res){
 //    var poll = {
   //      poll_issue: req.body.poll_issue//How is poll issue passed in req?
    // };
-    console.log('Data rcvd: ', req.body.poll);    
+    console.log('Data rcvd: ', req.body);    
     //Publish this poll
 
-    //TODO: Will this var 'votekit' be defined in the app using this api alwaysshi?
-/*    votekit.publishPoll(post, function(err, pollId){
+        publish(req.body, function(err, pollId){
         if(err){
             console.log(err.message);
             res.redirect('/');
@@ -18,5 +17,6 @@ app.post('/api/poll', function(req, res){
             res.redirect('/');
         }
         });
-*/
-    }); 
+});
+
+     

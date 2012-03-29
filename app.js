@@ -6,7 +6,8 @@
 var express = require('express')
   , routes = require('./routes'),
     http = require('http'),
-    rest = require('restler');
+    rest = require('restler'),
+    mongoose = require('mongoose');
 //  , votekit = require('./votekit');
 
 //create server
@@ -14,7 +15,8 @@ app = module.exports = express.createServer('127.0.0.1');
 
 //connect to the votekit engine
 votekit = require('./votekit/votekit-engine.js');
-votekit.connect('localhost', 'newdb');
+votekit.connect('localhost', 'pollapp_db');
+
 
 connect = require('connect');
 //auth = require('connect-auth');//what iis this for?
@@ -50,32 +52,3 @@ app.listen(3000);
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
 }
 
-/*var post_data = JSON.stringify({
-    who : 'aakriti',
-    visibility : 'public'
-    });
-console.log('Posting data: ', post_data);
-
-var options = {
-      host: 'localhost',
-      port: 3000,
-      path: '/api/poll',
-      method: 'POST'
-};
-
-var req = http.request(options, function(res) {
-      console.log('STATUS: ' + res.statusCode);
-      console.log('HEADERS: ' + JSON.stringify(res.headers));
-      res.setEncoding('utf8');
-      res.on('data', function (chunk) {
-      console.log('BODY: ' + chunk);
-                      });
-});
-
-req.on('error', function(e) {
-      console.log('problem with request: ' + e.message);
-});
-
-// write data to request body
-req.write(post_data);
-req.end();*/

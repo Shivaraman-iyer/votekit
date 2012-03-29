@@ -17,13 +17,14 @@ PostSchema = new Schema({
 
 PostSchema.methods.create = function create(object, callback) {
     if(!object.who || !object.visibility || !object.poll)
-        callback(new Error("PostSchema.methods.create: Bad arguments"));
+        //callback(new Error("PostSchema.methods.create: Bad arguments"));TODO
+	console.log("PostSchema.methods.create: Bad arguments");
     else {
         // date will be generated upon actual object creation, not client-side
         this.who = object.who;
 	this.expiry_date = object.expiry_date;
         this.visibility = object.visibility;
-        this.data.poll = object.data.poll;
+        this.poll = object.poll;
         callback(null);
     }
 };

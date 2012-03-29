@@ -1,16 +1,18 @@
 VSchemas = require('./votekit-schemas');
-require('./poll-functions.js');
 
+require('./poll-functions.js');
+require('./schemas/poll.js');
+require('./schemas/post.js');
+ 
 module.exports.connect = function(server, db, callback) {
-//   mongoose.connect('mongodb://' + server + '/' + db, callback);
-//for testing on localhost
-    mongoose.connect('mongodb://localhost/pollAppDb');
+    mongoose.connect('mongodb://' + server + '/' + db, callback);
+    
 }
- 
+
+
 module.exports.disconnect = function() {
-   mongoose.disconnect();
+    mongoose.disconnect();
 }
- 
  module.exports.publishPoll = publish;
  module.exports.getPost = getPost;
- module.exports.getTest = getTest;
+ 

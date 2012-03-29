@@ -64,7 +64,7 @@ PollSchema = new Schema({
        These will be poll objects*/
     options: [{ 
         type: Schema.ObjectId,
-        required: true
+   //     required: true
         }]
     /*TO-DO:
    // choosers: [{
@@ -78,15 +78,15 @@ PollSchema = new Schema({
 
 
 PollSchema.methods.create = function create(object, callback) {
-    if(!object.content_type || !object.option_type || !object.comments_enabled || !object.data.content)
+ console.log('PollSchema: ', object);
+    if(!object.content_type || !object.option_type || !object.comments_enabled || !object.content)
         //callback(new Error("PollSchema.methods.create: Bad arguments"));TODO Error class?
-	//callback("PollSchema.methods.create: Bad arguments");
-    ;
+	console.log("PollSchema.methods.create: Bad arguments");
+    
     else {
         // date will be generated upon actual object creation, not client-side
         this.what = object.what;
-	title
-	
+	this.title = object.title;
         this.content = object.content;
         this.content_type = object.content_type;
 	this.tags = object.tags;
@@ -95,7 +95,7 @@ PollSchema.methods.create = function create(object, callback) {
 	this.option_type = object.option_type;
 	this.options = object.options;
 	this.content_type = object.content_type;
-        this.data.content = object.data.content;
+        this.content = object.content;
         callback(null);
     }
 };
