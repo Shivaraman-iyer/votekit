@@ -1,6 +1,11 @@
 VSchemas = require('./votekit-schemas');
 
-require('./poll-functions.js');
+require('./query-handling/basic-get-functions.js');
+require('./query-handling/advanced-get-functions.js');
+require('./query-handling/post-functions.js');
+require('./query-handling/put-functions.js');
+require('./query-handling/delete-functions.js');
+
 require('./schemas/poll.js');
 require('./schemas/post.js');
  

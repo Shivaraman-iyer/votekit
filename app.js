@@ -1,20 +1,16 @@
-
 /**
  * Module dependencies.
  */
 
-var express = require('express')
-  , routes = require('./routes'),
-    http = require('http'),
-    rest = require('restler'),
+var express = require('express'),
     mongoose = require('mongoose');
-//  , votekit = require('./votekit');
 
 //create server
 app = module.exports = express.createServer('127.0.0.1');
 
 //connect to the votekit engine
 votekit = require('./votekit/votekit-engine.js');
+
 votekit.connect('localhost', 'pollapp_db', function(err) {
   if(err)	console.log(err);
   else	console.log("connected.");
@@ -22,7 +18,7 @@ votekit.connect('localhost', 'pollapp_db', function(err) {
 
 
 connect = require('connect');
-//auth = require('connect-auth');//what iis this for?
+
 // Configuration
 
 app.configure(function(){
@@ -32,7 +28,6 @@ app.configure(function(){
   app.use(express.methodOverride());
   app.use(express.cookieParser());
   app.use(express.logger( { format: ':date :remote-addr :method :status :url' } ));
-//  app.use(app.router);
   app.use(express.static(__dirname + '/public'));
 });
 
@@ -43,6 +38,7 @@ app.configure('development', function(){
 app.configure('production', function(){
   app.use(express.errorHandler());
 });
+
 // Routes
 require('./routes/create.js');
 require('./routes/read.js');
