@@ -11,7 +11,11 @@ module.exports.Post = mongoose.model('post');
 module.exports.Poll = mongoose.model('poll');
 
 
-//require('./poll-functions.js');
+//requir(e'./poll-functions.js');
+module.exports.model = function(modelname) {
+     return mongoose.model(modelname);
+ }
+
 //module.exports.Post = mongoose.model('post');
 //module.exports.Poll = mongoose.model('poll');
 
