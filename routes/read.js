@@ -24,7 +24,7 @@ app.get('/api/poll/get_poll_by_id/:id', function(req, res){
  * with given id
  */
 app.get('/api/poll/get_poll_by_author/:who', function(req, res){
-  getPostByAuthor(req.params.who, function(err, post){
+  getPostsByAuthor(req.params.who, function(err, post){
     if(err) 
       res.send(err.message);//TODO correct error message?
       else 

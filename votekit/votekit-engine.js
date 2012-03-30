@@ -16,5 +16,5 @@ module.exports.disconnect = function() {
  module.exports.publishPoll = publish;
  module.exports.getPostById = getPostById;
  module.exports.getAllPosts = getAllPosts;
- module.exports.getPostByAuthor = getPostByAuthor;
+ module.exports.getPostsByAuthor = getPostsByAuthor;
  

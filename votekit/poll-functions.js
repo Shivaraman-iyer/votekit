@@ -79,12 +79,32 @@ getPostById = function (postId, callback) {
     }});
 };
 
-getPostByAuthor = function(author, callback) {
-    VSchemas.Post.findOne({ 'who' : author}, function(err, post){
+getPostsByAuthor = function(author, callback) {
+  var result = [];
+    VSchemas.Post.find({ 'who' : author}, function(err, posts){
       if(err) callback(err);
-			  else {
-			   callback(null, post); 
+		       else{
+			 if(!posts.length){
+			 callback(null, result);
+			   
+			}
+		      else {
+			posts.forEach(function(post, index, array) {
+			  VSchemas.Poll.findById(post.poll, function(err, poll) {
+                if(err) callback(err);  
+                else {
+                    if(poll) {
+                        makeJSON(post, poll, function(generated) {
+                          result.push(generated);
+                        });
+                        if(index == array.length-1)
+                            callback(null, result);
+                    }
+                }
+            });
+        });
 			  }
+		       }
     });
 };
 getAllPosts = function(callback){
