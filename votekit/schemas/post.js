@@ -21,9 +21,16 @@ PostSchema.methods.create = function create(object, callback) {
 	console.log("PostSchema.methods.create: Bad arguments");
     else {
         // date will be generated upon actual object creation, not client-side
+        if(object.when != undefined)
+	  this.when = object.when;
+	
         this.who = object.who;
-	this.expiry_date = object.expiry_date;
-        this.visibility = object.visibility;
+	if(object.expiry_date != undefined)
+	  this.expiry_date = object.expiry_date;
+	
+	if(object.visibility != undefined)
+	  this.visibility = object.visibility;
+	
         this.poll = object.poll;
         callback(null);
     }

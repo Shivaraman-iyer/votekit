@@ -3,7 +3,7 @@ app.post('/api/poll', function(req, res){
 //    var poll = {
   //      poll_issue: req.body.poll_issue//How is poll issue passed in req?
    // };
-    console.log('Data rcvd: ', req.body);    
+  //  console.log('Data rcvd: ', req.body);    
     //Publish this poll
 
         publish(req.body, function(err, pollId){

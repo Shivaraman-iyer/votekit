@@ -34,8 +34,8 @@ PollSchema = new Schema({
     /* To determine whether comments are enabled on this option/poll*/
     comments_enabled: { 
         type: Boolean, 
-        default: false, 
-        required: true 
+        default: false
+        //required: true 
         },
     /* List of comments*/
     comments: [{ 
@@ -78,22 +78,32 @@ PollSchema = new Schema({
 
 
 PollSchema.methods.create = function create(object, callback) {
- console.log('PollSchema: ', object);
-    if(!object.content_type || !object.option_type || !object.comments_enabled || !object.content)
+ 
+    if(!object.content_type || !object.option_type ||  !object.content)//!object.comments_enabled ||
         //callback(new Error("PollSchema.methods.create: Bad arguments"));TODO Error class?
 	console.log("PollSchema.methods.create: Bad arguments");
     
     else {
         // date will be generated upon actual object creation, not client-side
-        this.what = object.what;
-	this.title = object.title;
+        if(object.what != undefined)
+	  this.what = object.what;
+	if(object.title != undefined)
+	  this.title = object.title;
+	
         this.content = object.content;
         this.content_type = object.content_type;
-	this.tags = object.tags;
+	
+	if(object.tags != undefined)
+	  this.tags = object.tags;
+	
 	this.comments_enabled = object.comments_enabled;
-	this.comments = object.comments;
+	if(object.comments != undefined)
+	  this.comments = object.comments;
+	
 	this.option_type = object.option_type;
-	this.options = object.options;
+	if(object.options != undefined)
+	  this.options = object.options;
+	
 	this.content_type = object.content_type;
         this.content = object.content;
         callback(null);
