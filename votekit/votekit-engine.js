@@ -14,5 +14,7 @@ module.exports.disconnect = function() {
     mongoose.disconnect();
 }
  module.exports.publishPoll = publish;
- module.exports.getPost = getPost;
+ module.exports.getPostById = getPostById;
+ module.exports.getAllPosts = getAllPosts;
+ module.exports.getPostByAuthor = getPostByAuthor;
  

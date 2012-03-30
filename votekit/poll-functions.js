@@ -53,24 +53,48 @@ function makeJSON(post, poll, callback) {
     var result = post.toJSON();
     result.poll = poll.toJSON();
     // We don't want to users to see the _id key in anything except the post's top level
-    removeKeyRecursively(result.poll, '_id');
+   // removeKeyRecursively(result.poll, '_id');
+    console.log('result from makeJSON: ', result);
     callback(result);
 }
 
-getPost = function (postId, callback) {
+getPostById = function (postId, callback) {
     // Find Post by ID
-    VSchemas.Post.findById(postId, function(err, post) {    if(err) callback(err); else {
-        // Find post's content in the post.data.postType collection
-        TSchemas.Poll.findById(post.poll, function(err, content) {
-            if(err) callback(err);  else {
+    VSchemas.Post.findById(postId, function(err, post) { 
+      if(err) 
+	callback(err); 
+      else {
+	callback(null, post);
+	//console.log('post.poll = ', post.poll);
+        /*VSchemas.Poll.findById(post.poll, function(err, poll) {
+            if(err) 
+	      callback(err);  
+	    else {
+	      console.log('Poll found for this post: ', poll);
                 makeJSON(post, poll, function(result) {
                     callback(null, result);
                 });
-            }
-        });
+            }});*/
     }});
 };
 
+getPostByAuthor = function(author, callback) {
+    VSchemas.Post.findOne({ 'who' : author}, function(err, post){
+      if(err) callback(err);
+			  else {
+			   callback(null, post); 
+			  }
+    });
+};
+getAllPosts = function(callback){
+    VSchemas.Post.find(function(err, listOfPosts) { 
+      if(err)
+	callback(err, null);
+      else {
+	callback(null, listOfPosts);
+	}
+    });
+};
 /*
 // Arbitrary mongo query API - needs a lot of testing and query detox
 queryPostContentOne = function(postType, query, options, callback) {
