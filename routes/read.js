@@ -2,7 +2,12 @@
  * returns a list of all polls
  */
 app.get('/api/poll', function(req, res){
-    
+    getAllPosts(function(err, posts){
+      if(err)
+	res.send(err.message);
+      else
+	res.send(posts);
+    });
   
    });
  

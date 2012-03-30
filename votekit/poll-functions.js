@@ -91,14 +91,14 @@ getPostsByAuthor = function(author, callback) {
 		      else {
 			posts.forEach(function(post, index, array) {
 			  VSchemas.Poll.findById(post.poll, function(err, poll) {
-                if(err) callback(err);  
-                else {
-                    if(poll) {
-                        makeJSON(post, poll, function(generated) {
-                          result.push(generated);
+			    if(err) callback(err);  
+			      else {
+				if(poll) {
+				    makeJSON(post, poll, function(generated) {
+					result.push(generated);
                         });
-                        if(index == array.length-1)
-                            callback(null, result);
+				if(index == array.length-1)
+				  callback(null, result);
                     }
                 }
             });
@@ -107,13 +107,33 @@ getPostsByAuthor = function(author, callback) {
 		       }
     });
 };
+
 getAllPosts = function(callback){
-    VSchemas.Post.find(function(err, listOfPosts) { 
-      if(err)
-	callback(err, null);
-      else {
-	callback(null, listOfPosts);
-	}
+  var result = [];
+    VSchemas.Post.find(function(err, posts){
+      if(err) callback(err);
+		       else{
+			 if(!posts.length){
+			 callback(null, result);
+			   
+			}
+		      else {
+			posts.forEach(function(post, index, array) {
+			  VSchemas.Poll.findById(post.poll, function(err, poll) {
+			    if(err) callback(err);  
+			      else {
+				if(poll) {
+				    makeJSON(post, poll, function(generated) {
+					result.push(generated);
+                        });
+				if(index == array.length-1)
+				  callback(null, result);
+                    }
+                }
+            });
+        });
+			  }
+		       }
     });
 };
 /*
