@@ -12,10 +12,11 @@ app.get('/api/poll', function(req, res){
 app.get('/api/poll/get_poll_by_id/:id', function(req, res){
   getPostById(req.params.id, function(err, post){
       if(err)
-	console.log('Error');//TODOwrite correct error code
-	else
+	res.send(err.message);
+      	else
 	  res.send(post);
-  });
+	});
+  
     });
 
 /*
@@ -25,7 +26,7 @@ app.get('/api/poll/get_poll_by_id/:id', function(req, res){
 app.get('/api/poll/get_poll_by_author/:who', function(req, res){
   getPostByAuthor(req.params.who, function(err, post){
     if(err) 
-      res.send('Error');//TODO correct error message?
+      res.send(err.message);//TODO correct error message?
       else 
 	res.send(post);
   });

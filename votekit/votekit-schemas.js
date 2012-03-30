@@ -1,7 +1,7 @@
 mongoose = require('mongoose'),
     Schema = mongoose.Schema;
-    ObjectId = mongoose.ObjectId;
-
+    ObjectId = mongoose.Types.ObjectId;
+    
 //Load schema models
 require('./schemas/poll.js');
 require('./schemas/post.js');

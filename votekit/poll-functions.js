@@ -1,3 +1,4 @@
+require('./votekit-schemas.js');
 // create a post + content pair from the received object
 function createPost(object, callback) {
   //console.log('creating: ', object); 
@@ -53,8 +54,8 @@ function makeJSON(post, poll, callback) {
     var result = post.toJSON();
     result.poll = poll.toJSON();
     // We don't want to users to see the _id key in anything except the post's top level
-   // removeKeyRecursively(result.poll, '_id');
-    console.log('result from makeJSON: ', result);
+    delete result.poll._id;
+   
     callback(result);
 }
 
@@ -64,17 +65,17 @@ getPostById = function (postId, callback) {
       if(err) 
 	callback(err); 
       else {
-	callback(null, post);
-	//console.log('post.poll = ', post.poll);
-        /*VSchemas.Poll.findById(post.poll, function(err, poll) {
-            if(err) 
-	      callback(err);  
-	    else {
-	      console.log('Poll found for this post: ', poll);
+	VSchemas.Poll.findById(post.poll, function(err, poll) {
+            if(err) {
+	      callback(err);}
+	      else {
                 makeJSON(post, poll, function(result) {
+	
                     callback(null, result);
                 });
-            }});*/
+            }
+	})
+	
     }});
 };
 

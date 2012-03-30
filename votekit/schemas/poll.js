@@ -62,7 +62,7 @@ PollSchema = new Schema({
         },
     /* List of options
        These will be poll objects*/
-    options: [{ 
+    options_list: [{ 
         type: Schema.ObjectId,
    //     required: true
         }]
