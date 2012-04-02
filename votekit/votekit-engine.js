@@ -18,8 +18,16 @@ module.exports.connect = function(server, db, callback) {
 module.exports.disconnect = function() {
     mongoose.disconnect();
 }
- module.exports.publishPoll = publish;
- module.exports.getPostById = getPostById;
- module.exports.getAllPosts = getAllPosts;
- module.exports.getPostsByAuthor = getPostsByAuthor;
+//GET
+module.exports.getPostById = getPostById;
+module.exports.getAllPosts = getAllPosts;
+module.exports.getPostsByAuthor = getPostsByAuthor;
+ 
+//POST 
+module.exports.publishPoll = publish;
+
+//PUT
+module.exports.updatePostById = updatePostById;
+//DELETE
+module.exports.deletPostById = deletePostById;
  

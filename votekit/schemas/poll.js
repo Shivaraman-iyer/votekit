@@ -1,9 +1,4 @@
 PollSchema = new Schema({
-    /*Whether this is an option, option to options,
-      or a poll alone.*/
-      what: {
-          type: String, enum: ['poll', 'option', 'op2op']
-      },
     /* This is the poll question,
        the user may or may not state a poll question.*/
     title: {
@@ -11,43 +6,44 @@ PollSchema = new Schema({
         },
     /* The content type of the topic/description
        Should be chosen out of {text, image, code}
-       For a poll should be text. Could vary for an option*/
-    content_type: {
+       */
+    des_content_type: {
         type: String, 
+	enum:['text', 'img'],//TODO:code to be added later
         default: 'text', 
         required: true
         },
     /* Main content of the poll topic/option
-       TO-DO: Implementation here only for text content.
-               need to write a function to return content 
-               type according to value of 'content_type*/
-    content: {
+       Will be a string containing the text,
+       or the id of the image.
+       */
+    description: {
         type: String, 
         default: '', 
         required: true
         },
     /* List of tags, optional
-       TO-DO: Have ids for tags?*/
+       TO-DO: Have ids for tags*/
     tags: [{ 
         type: String 
         }], 
-    /* To determine whether comments are enabled on this option/poll*/
+    /* To determine whether comments are enabled on this poll*/
     comments_enabled: { 
         type: Boolean, 
-        default: false
-        //required: true 
+        default: false,
+        required: true 
         },
     /* List of comments*/
-    comments: [{ 
+    comments_list: [{ 
         when: { 
             type: Date, 
             default: Date.now(), 
             required: true 
             },
         who: {
-            type: Schema.ObjectId 
+            type: String
             },
-        content: { 
+        comment: { 
             type: String 
             }
         }],
@@ -55,16 +51,26 @@ PollSchema = new Schema({
        or simple options.
        Choose from: 'stars', 'like', 'like-dislike', 'list'
        TO-DO: Multiple votes?*/
-    option_type: {
+    poll_method: {
         type: String,
         default: 'list',
         required: true
         },
+    /*Whether they are plain text, links, or image ids
+     * Corresponding values: 'text', 'link', 'img'
+     */
+    options_type: {
+	type: String, 
+	enum: ['text', 'link', 'img'],
+	default: 'text',
+	required: true
+    },
+	  
     /* List of options
-       These will be poll objects*/
+       */
     options_list: [{ 
-        type: Schema.ObjectId,
-   //     required: true
+        type: String,
+        required: true
         }]
     /*TO-DO:
    // choosers: [{
@@ -78,7 +84,7 @@ PollSchema = new Schema({
 
 
 PollSchema.methods.create = function create(object, callback) {
- 
+ console.log('Poll data sent by user: \n', object);
     if(!object.content_type || !object.option_type ||  !object.content)//!object.comments_enabled ||
         //callback(new Error("PollSchema.methods.create: Bad arguments"));TODO Error class?
 	console.log("PollSchema.methods.create: Bad arguments");

@@ -1,4 +1,5 @@
 app.post('/api/poll', function(req, res){
+  console.log('user posted: \n', req.body);
     publish(req.body, function(err, pollId){
         if(err){
             console.log(err.message);
