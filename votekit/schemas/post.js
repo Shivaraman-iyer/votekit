@@ -1,18 +1,35 @@
 PostSchema = new Schema({
-    when: {type: Date, default: Date.now, required: true},
-    who: { type: String, required: true},
+    when: {
+      type: Date, 
+      default: Date.now, 
+      required: true},
+      
+    who: { 
+      type: String, 
+      required: true},
+      
     /* Expiry date is not always required. 
        Will be included if application wants to have one, might need a calnedar for it.*/
-    expiry_date: {type: Date, required: false},
-    /* Defines to whom the post is visible
+    expiry_date: {
+      type: Date, 
+      required: false},
+    
+      /* Defines to whom the post is visible
        TO-DO: Add list of people it is visible.
               Should be string type or ids for each type of visibility?
               How to restrict to only 2 words? (public, custom)
        Status: Only for 'all' users/user's fb friends*/
-    visibility: {type: String, enum:['public', 'custom'], default: "public", required: true},
-    /* This will be the poll object.
+    visibility: {
+      type: String, 
+      enum:['public', 'custom'], 
+      default: "public", 
+	required: true},
+    
+      /* This will be the poll object.
        TO_DO: Default object needs to be defined.*/
-    poll: { type: Schema.ObjectId, required: true}
+    poll: { 
+      type: Schema.ObjectId, 
+      required: true}
 });
 
 PostSchema.methods.create = function create(object, callback) {
