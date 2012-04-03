@@ -92,19 +92,19 @@ PollSchema.methods.create = function create(object, callback) {
     this.description = object.description;
         
     
-    if(object.tags != undefined)//TODO check if array is empty
-      this.tags = object.tags;
+    if(object.tags != undefined && object.tags.length > 0)
+      this.tags = object.tags.slice();
     
     this.comments_enabled = object.comments_enabled;
     
-    if(object.comments_list != undefined)//TODO check if array is empty
-      this.comments_list = object.comments_list;
+    if(object.comments_list != undefined && object.comments_list.length > 0)
+      this.comments_list = object.comments_list.slice();
     
     this.poll_method = object.poll_method;
     this.options_type = object.options_type;
     
-    if(object.options_list != undefined)//TODO check if array is empty
-      this.options_list = object.options_list;//TODO copy array
+    if(object.options_list != undefined && object.options_list.length > 0)
+      this.options_list = object.options_list.slice();
     
     
         callback(null);
