@@ -3,9 +3,10 @@ mongoose = require('mongoose'),
     ObjectId = mongoose.Types.ObjectId;
     
 //Load schema models
+
 require('./schemas/poll.js');
 require('./schemas/post.js');
-
+require('./schemas/options.js');
 
 module.exports.Post = mongoose.model('post');
 module.exports.Poll = mongoose.model('poll');

@@ -6,7 +6,9 @@ function createPost(object, callback) {
     
     
     poll.create(object.poll, function(err) {  if(err) callback(err);  else {
-        // change the value of object.poll to the ID of the content object, because that is what the schema wants
+    //create options objects also
+    
+      // change the value of object.poll to the ID of the content object, because that is what the schema wants
         object.poll = poll._id;
 	        
 	// create a post from the original object

@@ -6,8 +6,6 @@ require('./query-handling/post-functions.js');
 require('./query-handling/put-functions.js');
 require('./query-handling/delete-functions.js');
 
-require('./schemas/poll.js');
-require('./schemas/post.js');
  
 module.exports.connect = function(server, db, callback) {
     mongoose.connect('mongodb://' + server + '/' + db, callback);

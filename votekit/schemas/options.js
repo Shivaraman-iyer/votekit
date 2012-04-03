@@ -6,7 +6,8 @@ OptionStarSchema = new Schema({
         choosers: [{//there will be 5 elements in this array of choosers for every poll that wants star ratings
             numOfStars : {
                 type: Number,
-                enum: ['1', '2', '3', '4', '5'],
+		min : 1,
+		max: 5,
                 required: true
             },
             whoChose: [ {
@@ -32,7 +33,7 @@ OptionLikeDislikeSchema = new Schema({
             }]
 });
 
-OptionListSchema = newSchema({
+OptionListSchema = new Schema({
      content: {
             type: String,
             required: true
@@ -42,3 +43,47 @@ OptionListSchema = newSchema({
                 required: true
             }]
 });
+
+OptionLikeDislikeSchema.methods.create = function create(object, callback) {
+ 
+    if(!object.content)
+        //callback(new Error("PollSchema.methods.create: Bad arguments"));TODO Error class?
+    console.log("OptionLikeDislikeSchema.methods.create: Bad arguments");
+    
+    else {
+        if(object.content != undefined)
+	  this.content = object.content;
+	
+        callback(null);
+    }
+};
+
+OptionListSchema.methods.create = function create(object, callback){
+     if(!object.content)
+        //callback(new Error("PollSchema.methods.create: Bad arguments"));TODO Error class?
+    console.log("OptionListSchema.methods.create: Bad arguments");
+    
+    else {
+        if(object.content != undefined)
+	  this.content = object.content;
+	
+        callback(null);
+    }
+};
+
+OptionStarSchema.methods.create = function create(object, callback){
+     if(!object.content)
+        //callback(new Error("PollSchema.methods.create: Bad arguments"));TODO Error class?
+    console.log("OptionStarSchema.methods.create: Bad arguments");
+    
+    else {
+        if(object.content != undefined)
+	  this.content = object.content;
+	
+        callback(null);
+    }
+};
+
+mongoose.model('optionStar', OptionStarSchema, 'optionStar');
+mongoose.model('optionLikeDislike', OptionLikeDislikeSchema, 'optionLikeDislike');
+mongoose.model('optionList', OptionListSchema, 'optionList');

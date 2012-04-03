@@ -9,7 +9,7 @@ PollSchema = new Schema({
        */
     des_content_type: {
         type: String, 
-    enum:['text', 'img'],//TODO:code to be added later
+	enum:['text', 'img'],//TODO:code to be added later
         default: 'text', 
         required: true
         },
@@ -53,6 +53,7 @@ PollSchema = new Schema({
        TO-DO: Multiple votes?*/
     poll_method: {
         type: String,
+	enum: ['list', 'like-dislike', 'stars'],
         default: 'list',
         required: true
         },
@@ -70,39 +71,42 @@ PollSchema = new Schema({
        */
     options_list: [{ 
         type: Schema.ObjectId,
+	unique: true,
         required: true
         }]
 });
 
-Poll.Schema.methods.create = function create(object, callback) {
+PollSchema.methods.create = function create(object, callback) {
  console.log('Poll data sent by user: \n', object);
-    if(!object.content_type || !object.option_type ||  !object.content)//!object.comments_enabled ||
+    if(!object.des_content_type || !object.options_type ||  !object.description || !object.comments_enabled || !object.poll_method) 
         //callback(new Error("PollSchema.methods.create: Bad arguments"));TODO Error class?
     console.log("PollSchema.methods.create: Bad arguments");
     
     else {
-        // date will be generated upon actual object creation, not client-side
-        if(object.what != undefined)
-      this.what = object.what;
+      
     if(object.title != undefined)
       this.title = object.title;
+   
+    this.des_content_type = object.des_content_type;
     
-        this.content = object.content;
-        this.content_type = object.content_type;
+    this.description = object.description;
+        
     
-    if(object.tags != undefined)
+    if(object.tags != undefined)//TODO check if array is empty
       this.tags = object.tags;
     
     this.comments_enabled = object.comments_enabled;
-    if(object.comments != undefined)
-      this.comments = object.comments;
     
-    this.option_type = object.option_type;
-    if(object.options != undefined)
-      this.options = object.options;
+    if(object.comments_list != undefined)//TODO check if array is empty
+      this.comments_list = object.comments_list;
     
-    this.content_type = object.content_type;
-        this.content = object.content;
+    this.poll_method = object.poll_method;
+    this.options_type = object.options_type;
+    
+    if(object.options_list != undefined)//TODO check if array is empty
+      this.options_list = object.options_list;//TODO copy array
+    
+    
         callback(null);
     }
 };

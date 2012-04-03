@@ -10,7 +10,7 @@ PostSchema = new Schema({
       
     /* Expiry date is not always required. 
        Will be included if application wants to have one, might need a calnedar for it.*/
-    expiry_date: {
+    expiry_date: {//TODOCOnvert recvd string to date format
       type: Date, 
       required: false},
     
