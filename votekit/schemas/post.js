@@ -33,6 +33,7 @@ PostSchema = new Schema({
 });
 
 PostSchema.methods.create = function create(object, callback) {
+  console.log('PostSchema rcvd object: \n', object);
     if(!object.who || !object.visibility || !object.poll)
         //callback(new Error("PostSchema.methods.create: Bad arguments"));TODO
 	console.log("PostSchema.methods.create: Bad arguments");

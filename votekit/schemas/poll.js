@@ -77,8 +77,8 @@ PollSchema = new Schema({
 });
 
 PollSchema.methods.create = function create(object, callback) {
- console.log('Poll data sent by user: \n', object);
-    if(!object.des_content_type || !object.options_type ||  !object.description || !object.comments_enabled || !object.poll_method) 
+ console.log('PollSchema rcvd object: \n', object);
+    if(!object.des_content_type || !object.options_type ||  !object.description || !object.comments_enabled || !object.poll_method || object.options_list.length < 1) 
         //callback(new Error("PollSchema.methods.create: Bad arguments"));TODO Error class?
     console.log("PollSchema.methods.create: Bad arguments");
     
