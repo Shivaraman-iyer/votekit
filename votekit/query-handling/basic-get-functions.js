@@ -1,5 +1,5 @@
-var list= [];
-list.push();
+var list= new Array();
+//TODO very first get request after server starts doesnt populate options list
 function makeJSON_tmp(post, poll, options_list, callback) {
     var result = post.toJSON();
     result.poll = poll.toJSON();
@@ -27,10 +27,19 @@ function makeJSON(post, poll, callback) {
 }
 
 getPostById = function (postId, callback) {
-  var options_list= [];
+  //var options_list= [];
   var i;
   var obj;
   // Find Post by ID
+   /*VSchemas.Post.findById(postId).populate('poll').run(function(err, post){
+    if(err){
+      console.log(err);
+     callback(err); 
+    }
+    else
+      console.log(post);
+  });*/
+ 
     VSchemas.Post.findById(postId, function(err, post) { 
       if(err) {
 	console.log(err.message);
@@ -73,7 +82,6 @@ getOptions = function(options_list, poll_method, callback){
 	    callback(err);
 	  }
 	  else{
-	    
 	    list.splice(i, 1, option.toJSON());
 	    //console.log(list);
 	  }
@@ -86,8 +94,7 @@ getOptions = function(options_list, poll_method, callback){
 	    callback(err);
 	  }
 	  else{
-	    
-	     list.splice(i, 1, option.toJSON());
+	    list.splice(i, 1, option.toJSON());
 	    //console.log(list);
 	  }
 	});
@@ -99,13 +106,13 @@ getOptions = function(options_list, poll_method, callback){
 	    callback(err);
 	  }
 	  else{
-	    
-	     list.splice(i, 1, option.toJSON());
+	   list.splice(i, 1, option.toJSON());
 	    //console.log(list);
 	  }
 	});
     }
     }
+    //list.length = i;
     console.log(list);
     callback(null, list);
 };

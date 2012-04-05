@@ -2,8 +2,29 @@ OptionStarSchema = new Schema({
         content: {
             type: String,
             required: true
+	  
         },
-        choosers: [{//there will be 5 elements in this array of choosers for every poll that wants star ratings
+	whoChose1 : [{
+	  type: String,
+	  unique: true
+	}],
+	whoChose2 : [{
+	  type: String,
+	  unique: true
+	}],
+	whoChose3 : [{
+	  type: String,
+	  unique: true
+	}],
+	whoChose4 : [{
+	  type: String,
+	  unique: true
+	}],
+	whoChose5 : [{
+	  type: String,
+	  unique: true
+	}]
+	/*choosers: [//there will be 5 elements in this array of choosers for every poll that wants star ratings
             numOfStars : {
                 type: Number,
 		min : 1,
@@ -12,24 +33,28 @@ OptionStarSchema = new Schema({
             },
             whoChose: [ {
                 type: String,//stores id of users who 'numOfStars' for this option
-                required: true
+                required: true,
+		unique:true
             }]
         
-        }]    
+        ]    */
 });
 
 OptionLikeDislikeSchema = new Schema({
 	content: {
             type: String,
             required: true
+	  
         },
 	who_likes :[ {
                 type: String,
-                required: true
+                required: true,
+		unique:true
             }],
 	who_dislikes :[ {
                 type: String,
-                required: true
+                required: true,
+		unique:true
             }]
 });
 
@@ -39,8 +64,9 @@ OptionListSchema = new Schema({
             required: true
         },
      choosers:[{
-                type: String,//stores id of users who 'numOfStars' for this option
-                required: true
+                type: String,
+                required: true,
+		unique: true//TODO how is this saving the same user id twice when the ids should be unique?
             }]
 });
 
@@ -88,6 +114,14 @@ OptionStarSchema.methods.create = function create(object, callback){
         if(object.content != undefined)
 	  this.content = object.content;
 	
+	/*if(object.choosers != undefined && object.choosers.length > 0)
+	  this.choosers = object.choosers.slice();
+	else{
+	  this.choosers = [{numOfStars: 1}, {numOfStars: 2}, {numOfStars: 3}, {numOfStars: 4}, {numOfStars: 5}];
+	  
+	
+	}*/
+        
         callback(null);
     }
 };

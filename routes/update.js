@@ -1,5 +1,14 @@
+/*
+ * Put data in this format to add votes
+ * {
+ * option_num: <>
+ * stars_num: <> //If the schema has star rating
+ * choice: 'like' or 'dislike'
+ * id: <>//Id of chooser
+ * }
+ */
 app.put('/api/poll/:id', function(req, res){
-   console.log('You want to update: \n', req.params.id);
+   //console.log('You want to update: \n', req.params.id);
   updatePostById(req.params.id, req.body, function(err){
    
     if(err){
