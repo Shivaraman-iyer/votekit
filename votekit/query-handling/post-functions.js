@@ -6,7 +6,7 @@ function createPost(object, callback) {
     var options_obj = [];
     var i;
     
-    //console.log('Number of options sent is = ', object.poll.options_list.length);
+   // console.log('Number of options sent is = ', object.poll.options_list.length);
     
     for(i = 0; i < object.poll.options_list.length; i++){
 	if(object.poll.poll_method === 'stars'){

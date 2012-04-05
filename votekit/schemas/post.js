@@ -24,19 +24,24 @@ PostSchema = new Schema({
       enum:['public', 'custom'], 
       default: "public", 
 	required: true},
-    
+    //TODO Add list of user id for whom this post is visible
       /* This will be the poll object.
        TO_DO: Default object needs to be defined.*/
     poll: { 
       type: Schema.ObjectId, 
+      //ref: 'poll',
       required: true}
 });
 
 PostSchema.methods.create = function create(object, callback) {
   console.log('PostSchema rcvd object: \n', object);
-    if(!object.who || !object.visibility || !object.poll)
+    if(!object.who)
         //callback(new Error("PostSchema.methods.create: Bad arguments"));TODO
-	console.log("PostSchema.methods.create: Bad arguments");
+	console.log("PostSchema.methods.create: Bad arguments,who ", object.who);
+     else if(!object.visibility)
+       console.log("PostSchema.methods.create: Bad arguments,visibility ", object.visibility);
+     else if(!object.poll)
+       console.log("PostSchema.methods.create: Bad arguments, poll", object.poll);
     else {
         // date will be generated upon actual object creation, not client-side
         if(object.when != undefined)

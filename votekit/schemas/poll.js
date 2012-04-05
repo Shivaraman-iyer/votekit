@@ -31,7 +31,7 @@ PollSchema = new Schema({
     comments_enabled: { 
         type: Boolean, 
         default: false,
-        required: true 
+        
         },
     /* List of comments*/
     comments_list: [{ 
@@ -78,9 +78,17 @@ PollSchema = new Schema({
 
 PollSchema.methods.create = function create(object, callback) {
  console.log('PollSchema rcvd object: \n', object);
-    if(!object.des_content_type || !object.options_type ||  !object.description || !object.comments_enabled || !object.poll_method || object.options_list.length < 1) 
+    if(!object.des_content_type)
+      console.log("PollSchema.methods.create: Bad arguments, des_content_type", object.des_content_type);
+      else if(!object.options_type)
+	console.log("PollSchema.methods.create: Bad arguments, options_type", object.options_type);
+	else if(!object.description)
+	  console.log("PollSchema.methods.create: Bad arguments, decription", object.description);
+	else if(!object.poll_method)
+	  console.log("PollSchema.methods.create: Bad arguments, poll_metho", object.poll_method);
+	else if(object.options_list.length < 1) 
         //callback(new Error("PollSchema.methods.create: Bad arguments"));TODO Error class?
-    console.log("PollSchema.methods.create: Bad arguments");
+    console.log("PollSchema.methods.create: Bad arguments, options list", object.option_list.length);
     
     else {
       
@@ -97,7 +105,7 @@ PollSchema.methods.create = function create(object, callback) {
     
     this.comments_enabled = object.comments_enabled;
     
-    if(object.comments_list != undefined && object.comments_list.length > 0)
+    if(object.comments_enabled && object.comments_list != undefined && object.comments_list.length > 0)
       this.comments_list = object.comments_list.slice();
     
     this.poll_method = object.poll_method;

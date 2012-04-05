@@ -1,6 +1,6 @@
 app.put('/api/poll/:id', function(req, res){
-   
-  updatePostById(req.params.id, req.body, function(err, numAffected){
+   console.log('You want to update: \n', req.params.id);
+  updatePostById(req.params.id, req.body, function(err){
    
     if(err){
             console.log(err.message);
@@ -8,7 +8,7 @@ app.put('/api/poll/:id', function(req, res){
 	    
         }
         else{
-            console.log(numAffected, ' docs were updated.\n');
+            //console.log(numAffected, ' docs were updated.\n');
           //  res.redirect('/');TODO needed?
         }
         });

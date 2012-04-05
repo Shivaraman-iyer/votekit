@@ -37,3 +37,11 @@ app.get('/api/poll/get_poll_by_author/:who', function(req, res){
   });
   
 });
+
+/*
+ * Returns latest x  number of polls from the entire database
+ * Will be used to public visibility
+ */
+app.get('/api/poll/get_recent_x/:x', function(req, res){
+  
+});

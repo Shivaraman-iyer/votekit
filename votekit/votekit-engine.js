@@ -18,6 +18,7 @@ module.exports.disconnect = function() {
 }
 //GET
 module.exports.getPostById = getPostById;
+module.exports.getOptions = getOptions;
 module.exports.getAllPosts = getAllPosts;
 module.exports.getPostsByAuthor = getPostsByAuthor;
  

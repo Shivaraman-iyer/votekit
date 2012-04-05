@@ -1,6 +1,7 @@
 updatePostById = function(id, objNew, callback){
  //TODO error while finding post by id
-  VSchemas.Post.update({ '_id' : id}, objNew, /*upsert*/ false, function(err){
+  VSchemas.Post.update({ _id:id}, {'$set': {who: "aakriti"}}, {upsert:true}, function(err){
+    console.log('id: ', id);
    if(err){
      console.log('when finding post by id, before updating: ', err.message);
      callback(err);
