@@ -58,11 +58,11 @@ PollSchema = new Schema({
         required: true
         },
     /*Whether they are plain text, links, or image ids
-     * Corresponding values: 'text', 'link', 'img'
+     * Corresponding values: 'text', 'link', 'image'
      */
     options_type: {
         type: String, 
-        enum: ['text', 'link', 'img'],
+        enum: ['text', 'link', 'image'],
         default: 'text',
         required: true
     },

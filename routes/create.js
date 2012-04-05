@@ -8,7 +8,12 @@ app.post('/api/poll', function(req, res){
         else{
             console.log('poll saved');
             post._id = pollId;
+	  //  res.send(pollId);
             res.redirect('/');
+	    
+	//    res.send({pollid:pollId});
+	    
+	   
         }
         });
 });

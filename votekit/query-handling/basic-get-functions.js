@@ -2,12 +2,13 @@ var list= [];
 function makeJSON_tmp(post, poll, options_list, callback) {
     var result = post.toJSON();
     result.poll = poll.toJSON();
-    var i;
+    /*var i;
     console.log(options_list.length);
     for(i = 0; i < options_list.length; i++){
       //console.log(options_list[i].toJSON());
      result.options_list.push(options_list[i].toJSON()); 
-    }
+    }*/
+    result.poll.options_list = options_list;
     
     // We don't want to users to see the _id key in anything except the post's top level
     delete result.poll._id;
@@ -58,10 +59,38 @@ getPostById = function (postId, callback) {
 
 getOptions = function(options_list, poll_method, callback){
     var i;
+   // list.length=0;
+//    var list = [];
   //  console.log(options_list);
     for(i = 0; i < options_list.length; i++){
       if(poll_method == 'list'){
 	VSchemas.OptionList.findById(options_list[i], function(err, option){
+	  if(err){
+	    console.log(err.message);
+	    callback(err);
+	  }
+	  else{
+	    
+	    list.push(option.toJSON());
+	    //console.log(list);
+	  }
+	});
+    }
+    else if(poll_method == 'like-dislike'){
+	VSchemas.OptionLikeDislike.findById(options_list[i], function(err, option){
+	  if(err){
+	    console.log(err.message);
+	    callback(err);
+	  }
+	  else{
+	    
+	    list.push(option.toJSON());
+	    //console.log(list);
+	  }
+	});
+    }
+    else if(poll_method == 'stars'){
+	VSchemas.OptionStar.findById(options_list[i], function(err, option){
 	  if(err){
 	    console.log(err.message);
 	    callback(err);
@@ -93,9 +122,10 @@ getPostsByAuthor = function(author, callback) {
 			    if(err) callback(err);  
 			      else {
 				if(poll) {
-				    makeJSON(post, poll, function(generated) {
+				  getOptions(poll.options_list, poll.poll_method, function(err, options){
+				    makeJSON_tmp(post, poll, options, function(generated) {
 					result.push(generated);
-                        });
+                        });});
 				if(index == array.length-1)
 				  callback(null, result);
                     }
@@ -122,9 +152,10 @@ getAllPosts = function(callback){
 			    if(err) callback(err);  
 			      else {
 				if(poll) {
-				    makeJSON(post, poll, function(generated) {
+				  getOptions(poll.options_list, poll.poll_method, function(err, options){
+				    makeJSON_tmp(post, poll, options, function(generated) {
 					result.push(generated);
-                        });
+                        });});
 				if(index == array.length-1)
 				  callback(null, result);
                     }
