@@ -1,4 +1,5 @@
 var list= [];
+list.push();
 function makeJSON_tmp(post, poll, options_list, callback) {
     var result = post.toJSON();
     result.poll = poll.toJSON();
@@ -44,6 +45,7 @@ getPostById = function (postId, callback) {
 		getOptions(poll.options_list, poll.poll_method, function(err, options){
 		  makeJSON_tmp(post, poll, options, function(result) {
 		    callback(null, result);
+		    
                 });
 		  
 		});
@@ -59,7 +61,8 @@ getPostById = function (postId, callback) {
 
 getOptions = function(options_list, poll_method, callback){
     var i;
-   // list.length=0;
+    
+    //list.length=0;
 //    var list = [];
   //  console.log(options_list);
     for(i = 0; i < options_list.length; i++){
@@ -71,7 +74,7 @@ getOptions = function(options_list, poll_method, callback){
 	  }
 	  else{
 	    
-	    list.push(option.toJSON());
+	    list.splice(i, 1, option.toJSON());
 	    //console.log(list);
 	  }
 	});
@@ -84,7 +87,7 @@ getOptions = function(options_list, poll_method, callback){
 	  }
 	  else{
 	    
-	    list.push(option.toJSON());
+	     list.splice(i, 1, option.toJSON());
 	    //console.log(list);
 	  }
 	});
@@ -97,7 +100,7 @@ getOptions = function(options_list, poll_method, callback){
 	  }
 	  else{
 	    
-	    list.push(option.toJSON());
+	     list.splice(i, 1, option.toJSON());
 	    //console.log(list);
 	  }
 	});
