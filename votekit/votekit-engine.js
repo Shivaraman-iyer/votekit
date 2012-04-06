@@ -22,7 +22,8 @@ module.exports.getPostById = getPostById;
 module.exports.getOptions = getOptions;
 module.exports.getAllPosts = getAllPosts;
 module.exports.getPostsByAuthor = getPostsByAuthor;
-module.exports.getRecentPolls = getRecentPolls; 
+module.exports.getRecentPollsOfAuthor = getRecentPollsOfAuthor; 
+module.exports.getRecentPollsByDate = getRecentPollsByDate; 
 //POST 
 module.exports.publishPoll = publish;
 
