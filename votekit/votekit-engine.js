@@ -24,6 +24,11 @@ module.exports.getAllPosts = getAllPosts;
 module.exports.getPostsByAuthor = getPostsByAuthor;
 module.exports.getRecentPollsOfAuthor = getRecentPollsOfAuthor; 
 module.exports.getRecentPollsByDate = getRecentPollsByDate; 
+
+module.exports.getAvgStarRating = getAvgStarRating;
+module.exports.getNumOfVotes = getNumOfVotes; 
+module.exports.getNumOfLikes = getNumOfLikes; 
+module.exports.getNumOfDislikes = getNumOfDislikes; 
 //POST 
 module.exports.publishPoll = publish;
 

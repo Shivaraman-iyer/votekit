@@ -67,3 +67,62 @@ app.get('/api/poll/get_recent_polls_by_date/:x', function(req, res){
   });
   
 });
+
+/*
+ * Returns average star rating for given option in poll
+ */
+app.get('/api/poll/get_avg_star_rating/:id', function(req, res){
+  getAvgStarRating(req.params.id, function(err, avg){
+    if(err)
+      res.send(err.message);
+    else{
+      res.send(avg);
+    }
+  });
+  
+});
+
+
+/*
+ * Returns number of votes for given option in poll
+ */
+app.get('/api/poll/get_num_of_votes/:id', function(req, res){
+  getNumOfVotes(req.params.id, function(err, votes){
+    if(err)
+      res.send(err.message);
+    else{
+      res.send(votes);
+    }
+  });
+  
+});
+
+
+/*
+ * Returns number of likes for given option in poll
+ */
+app.get('/api/poll/get_num_of_likes/:id', function(req, res){
+  getNumOfLikes(req.params.id, function(err, likes){
+    if(err)
+      res.send(err.message);
+    else{
+      res.send(likes);
+    }
+  });
+  
+});
+
+
+/*
+ * Returns number of dislikes for given option in poll
+ */
+app.get('/api/poll/get_num_of_dislikes/:id', function(req, res){
+  getNumOfLikes(req.params.id, function(err, dislikes){
+    if(err)
+      res.send(err.message);
+    else{
+      res.send(dislikes);
+    }
+  });
+  
+});

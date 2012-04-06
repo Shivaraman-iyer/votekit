@@ -10,6 +10,70 @@ function makeJSON(post, poll, options_list, callback) {
     callback(result);
 };
 
+getAvgStarRating = function(postId, optionNum, callback){
+  getPostById(postId, function(err, post){
+    if(err)
+      callback(err);
+    else if(post.poll.poll_method != 'stars')
+      callback("Bad arguments");
+    else{
+      
+      var option = post.poll.option_list[optionNum - 1];
+	avg = (option.whoChose1.length+
+	      (option.whoChose2.length * 2)+
+	      (option.whoChose3.length * 3)+
+	      (option.whoChose4.length * 4)+
+	      (option.whoChose5.length * 5))/
+	      (option.whoChose1.length +
+		option.whoChose2.length +
+		option.whoChose3.length +
+		option.whoChose4.length +
+		option.whoChose5.length);
+	
+	callback(null, avg);
+      
+    }
+  });
+};
+
+getNumOfVotes = function(postId, optionNum, callback){
+  getPostById(postId, function(err, post){
+    if(err)
+      callback(err);
+    else if(post.poll.poll_method != 'list')
+      callback("Bad arguments");
+    else{
+      	callback(null, post.poll.option_list[optionNum-1].choosers.length);
+      
+    }
+  });
+};
+
+getNumOfLikes = function(postId, optionNum, callback){
+  getPostById(postId, function(err, post){
+    if(err)
+      callback(err);
+    else if(post.poll.poll_method != 'like-dislike')
+      callback("Bad arguments");
+    else{
+      	callback(null, post.poll.option_list[optionNum-1].who_likes.length);
+      
+    }
+  });
+};
+getNumOfDislikes = function(postId, optionNum, callback){
+  getPostById(postId, function(err, post){
+    if(err)
+      callback(err);
+    else if(post.poll.poll_method != 'list')
+      callback("Bad arguments");
+    else{
+      	callback(null, post.poll.option_list[optionNum-1].who_dislikes.length);
+      
+    }
+  });
+};
+
 getRecentPollsByDate = function(x, callback){
   var result = [];
   var obj;
