@@ -19,12 +19,22 @@ updatePostById = function(id, obj, callback){
 	      console.log(err.message);
 	      callback(err);}
 	      else {
+		if(obj.tags != undefined && obj.tags.length > 0){
+		  for(var i = 0; i < obj.tags.length; i++)
+		    poll.tags.push(obj.tags[i]);
+		  poll.save(function(err){
+		    if(err)
+		      callback(err);
+		  });
+		}
+		if(option_num != undefined){
 		if(poll.poll_method === 'list')
 		  addVoteToList(poll, obj, function(err){if(err)callback(err)});
 		else if(poll.poll_method === 'stars')
 		  addStar(poll, obj, function(err){if(err)callback(err)});
 		else if(poll.poll_method === 'like-dislike')
 		  addLikeDislike(poll, obj, function(err){if(err)callback(err)});
+		}
 	      }
 	});
       }});

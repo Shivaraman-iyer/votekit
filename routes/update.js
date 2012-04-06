@@ -4,6 +4,7 @@
  * option_num: <>
  * stars_num: <> //If the schema has star rating
  * choice: 'like' or 'dislike'
+ * tags: <array of tags>,
  * id: <>//Id of chooser
  * }
  */
