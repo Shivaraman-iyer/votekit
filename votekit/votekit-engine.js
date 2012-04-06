@@ -5,6 +5,7 @@ require('./query-handling/advanced-get-functions.js');
 require('./query-handling/post-functions.js');
 require('./query-handling/put-functions.js');
 require('./query-handling/delete-functions.js');
+require('./query-handling/utils.js');
 
  
 module.exports.connect = function(server, db, callback) {
@@ -21,7 +22,7 @@ module.exports.getPostById = getPostById;
 module.exports.getOptions = getOptions;
 module.exports.getAllPosts = getAllPosts;
 module.exports.getPostsByAuthor = getPostsByAuthor;
- 
+module.exports.getRecentPolls = getRecentPolls; 
 //POST 
 module.exports.publishPoll = publish;
 

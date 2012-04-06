@@ -1,6 +1,7 @@
-var list= new Array();
+
 //TODO very first get request after server starts doesnt populate options list
-function makeJSON_tmp(post, poll, options_list, callback) {
+//require('./utils.js');
+function makeJSON(post, poll, options_list, callback) {
     var result = post.toJSON();
     result.poll = poll.toJSON();
     /*var i;
@@ -17,109 +18,114 @@ function makeJSON_tmp(post, poll, options_list, callback) {
     callback(result);
 }
 
-function makeJSON(post, poll, callback) {
-    var result = post.toJSON();
-    result.poll = poll.toJSON();
-    // We don't want to users to see the _id key in anything except the post's top level
-    delete result.poll._id;
-   
-    callback(result);
-}
-
 getPostById = function (postId, callback) {
   //var options_list= [];
   var i;
   var obj;
   // Find Post by ID
-   /*VSchemas.Post.findById(postId).populate('poll').run(function(err, post){
-    if(err){
-      console.log(err);
-     callback(err); 
-    }
-    else
-      console.log(post);
-  });*/
- 
     VSchemas.Post.findById(postId, function(err, post) { 
-      if(err) {
-	console.log(err.message);
-	callback(err); }
+      if(err || !post) {
+	console.log(err);
+	callback(err); }//TODO add proper error message
       else {
+	//console.log('poll id you are looking for : ', post);
 	VSchemas.Poll.findById(post.poll, function(err, poll) {
             if(err) {
 	      console.log(err.message);
 	      callback(err);}
 	      else {
 		//console.log(poll.options_list);
-		getOptions(poll.options_list, poll.poll_method, function(err, options){
-		  makeJSON_tmp(post, poll, options, function(result) {
+		var list= new Array();
+
+		getOptions(list, poll.options_list, poll.poll_method, function(err, options){
+		
+		  makeJSON(post, poll, list, function(result) {
 		    callback(null, result);
 		    
                 });
 		  
 		});
 		
-		//console.log('options_list: \n', options_list);     
-		//send options_list in makeJSOn too
-                
             }
 	})
 	
     }});
 };
 
-getOptions = function(options_list, poll_method, callback){
-    var i;
-    
-    //list.length=0;
-//    var list = [];
-  //  console.log(options_list);
-    for(i = 0; i < options_list.length; i++){
-      if(poll_method == 'list'){
-	VSchemas.OptionList.findById(options_list[i], function(err, option){
-	  if(err){
-	    console.log(err.message);
+getOptions = function(list, options_list, poll_method, callback){
+//    var i;
+    options_list.forEach(function(opt, i, arr){
+       if(poll_method == 'list'){
+	VSchemas.OptionList.findById(opt, function(err, option){
+	  if(err || !option){
+	 //   console.log(err.message);
 	    callback(err);
 	  }
-	  else{
-	    list.splice(i, 1, option.toJSON());
+	  else if(i === arr.length-1){
+	    
+	    //list.splice(i, 1, option.toJSON());
+	    callback(null, list);
+	    
+	   //   console.log(list);
 	    //console.log(list);
+	  }
+	  else{
+	    list.push(option.toJSON());
 	  }
 	});
     }
     else if(poll_method == 'like-dislike'){
-	VSchemas.OptionLikeDislike.findById(options_list[i], function(err, option){
-	  if(err){
-	    console.log(err.message);
+	VSchemas.OptionLikeDislike.findById(opt, function(err, option){
+	  if(err || !option){
+	//    console.log(err.message);
 	    callback(err);
 	  }
-	  else{
-	    list.splice(i, 1, option.toJSON());
+	  else if(i === arr.length -1){
+	    //list.splice(i, 1, option.toJSON());
+	    callback(null, list);
+	    
+	   //   console.log(list);
 	    //console.log(list);
+	  }
+	  else{
+	    list.push(option.toJSON());
 	  }
 	});
     }
     else if(poll_method == 'stars'){
-	VSchemas.OptionStar.findById(options_list[i], function(err, option){
-	  if(err){
-	    console.log(err.message);
+	VSchemas.OptionStar.findById(opt, function(err, option){
+	  if(err || !option){
+	   // console.log(err.message);
 	    callback(err);
 	  }
-	  else{
-	   list.splice(i, 1, option.toJSON());
+	  else if(i === arr.length-1){
+	    //list.splice(i, 1, option.toJSON());
+	    callback(null, list);
+	    
+	   //   console.log(list);
 	    //console.log(list);
+	  }
+	  else{
+	    list.push(option.toJSON());
 	  }
 	});
     }
-    }
+          /*console.log('i = ', i);
+      if(i == arr.length - 1){
+	//list.length = i+1;
+	console.log(list);
+	
+	callback(null, list);
+	
+      }*/
+
+    });
     //list.length = i;
-    console.log(list);
-    callback(null, list);
 };
 
 getPostsByAuthor = function(author, callback) {
-  var result = [];
-    VSchemas.Post.find({ 'who' : author}, function(err, posts){
+   var result = [];
+    VSchemas.Post.find({"who": author}, function(err, posts){
       if(err) callback(err);
 		       else{
 			 if(!posts.length){
@@ -132,12 +138,19 @@ getPostsByAuthor = function(author, callback) {
 			    if(err) callback(err);  
 			      else {
 				if(poll) {
-				  getOptions(poll.options_list, poll.poll_method, function(err, options){
-				    makeJSON_tmp(post, poll, options, function(generated) {
+				 var list = new Array(); 
+				 getOptions(list, poll.options_list, poll.poll_method, function(err, options){
+					
+				    makeJSON(post, poll, options, function(generated) {
+					// console.log('JSON geerated: \n', generated); 
 					result.push(generated);
-                        });});
-				if(index == array.length-1)
+					 if(index == array.length-1)
 				  callback(null, result);
+                        });
+				    //list.length = 0;
+				  });
+				/*if(index == array.length-1)
+				  callback(null, result);*/
                     }
                 }
             });
@@ -162,12 +175,19 @@ getAllPosts = function(callback){
 			    if(err) callback(err);  
 			      else {
 				if(poll) {
-				  getOptions(poll.options_list, poll.poll_method, function(err, options){
-				    makeJSON_tmp(post, poll, options, function(generated) {
+				 var list = new Array(); 
+				 getOptions(list, poll.options_list, poll.poll_method, function(err, options){
+					
+				    makeJSON(post, poll, options, function(generated) {
+					// console.log('JSON geerated: \n', generated); 
 					result.push(generated);
-                        });});
-				if(index == array.length-1)
+					 if(index == array.length-1)
 				  callback(null, result);
+                        });
+				    //list.length = 0;
+				  });
+				/*if(index == array.length-1)
+				  callback(null, result);*/
                     }
                 }
             });

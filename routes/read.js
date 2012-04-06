@@ -39,9 +39,21 @@ app.get('/api/poll/get_poll_by_author/:who', function(req, res){
 });
 
 /*
- * Returns latest x  number of polls from the entire database
- * Will be used to public visibility
+ * Returns latest x  number of polls from the database
+ * created by given author
  */
-app.get('/api/poll/get_recent_x/:x', function(req, res){
+app.get('/api/poll/get_recent_polls/:author/:x', function(req, res){
+  
+  
+  getRecentPolls(req.params.author, req.params.x, function(err, posts){
+    if(err)
+      res.send(err.message);
+    else
+      res.send(posts);
+  });
   
 });
+
+/*
+ * Returns latest x polls updated by friends of author or those that are publicly visible
+ */

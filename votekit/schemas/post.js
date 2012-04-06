@@ -29,7 +29,7 @@ PostSchema = new Schema({
        TO_DO: Default object needs to be defined.*/
     poll: { 
       type: Schema.ObjectId, 
-      //ref: 'poll',
+      //	ref: 'poll',
       required: true}
 });
 
