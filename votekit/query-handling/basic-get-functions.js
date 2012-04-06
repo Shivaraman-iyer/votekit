@@ -55,6 +55,7 @@ getPostById = function (postId, callback) {
 getOptions = function(list, options_list, poll_method, callback){
 //    var i;
     options_list.forEach(function(opt, i, arr){
+      
        if(poll_method == 'list'){
 	VSchemas.OptionList.findById(opt, function(err, option){
 	  if(err || !option){

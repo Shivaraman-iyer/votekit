@@ -1,4 +1,16 @@
-// create a post + content pair from the received object
+//dirty hack
+var hack_poll = {
+  title: 'Dummy poll',
+  des_content_type: 'text',
+  description: 'Dummy poll',
+	      
+	      options_type: 'text',
+	      comments_enabled: false,
+	      poll_method: 'list',
+	      options_list : [{content : 'Dummy option2'}, {content : 'Dummy option1'}]
+	      
+  
+};
 function createPost(object, callback) {
   //console.log('creating: ', object); 
     post = new VSchemas.Post();
@@ -43,6 +55,16 @@ function createPost(object, callback) {
 	options_obj[i] = optionLikeDislike;
 	  }
     }
+    //dirty hack
+    optionList = new VSchemas.OptionList();
+    optionList.create(hack_poll.options_list[0], function(err) {
+	    if(err)
+	      callback(err);
+	    else
+	      object.poll.options_list[i] = optionList._id;
+	  
+	});
+	  options_obj[i] = optionList;
     
     poll.create(object.poll, function(err) {  if(err) callback(err);  else {
     //create options objects also
