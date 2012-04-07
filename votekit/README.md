@@ -3,6 +3,7 @@
 This is an API for use by apps for polling.
 
 It allows you to creat 3 kinds of polls:
+
 * Simple list
 
 * List with an option of 'Like' or 'Dislike'
@@ -40,4 +41,9 @@ It handles the following requests:
   **URL**: http://server-address:port/api/poll/get_num_of_votes/:id/:optionNum
 
 #### POST
+  **Function**: Create a poll
+  **URL**: http://server-address:port/api/poll
+  
 #### PUT
+  **Function**: Update votes or tags
+  **URL**: http://server-address:port/api/poll/:id
