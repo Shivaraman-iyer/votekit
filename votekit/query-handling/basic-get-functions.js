@@ -24,10 +24,13 @@ getPostById = function (postId, callback) {
   var obj;
   // Find Post by ID
     VSchemas.Post.findById(postId, function(err, post) { 
-      if(err || !post) {
+      if(err) {
 	console.log(err);
-	callback(err); }//TODO add proper error message
-      else {
+	callback(err); }
+	/*else if(!post){
+	  callback(new Error("Post not found."));
+	}*/
+      else if(post){
 	//console.log('poll id you are looking for : ', post);
 	VSchemas.Poll.findById(post.poll, function(err, poll) {
             if(err) {

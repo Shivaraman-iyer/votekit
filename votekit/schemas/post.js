@@ -10,7 +10,7 @@ PostSchema = new Schema({
       
     /* Expiry date is not always required. 
        Will be included if application wants to have one, might need a calnedar for it.*/
-    expiry_date: {//TODOCOnvert recvd string to date format
+    expiry_date: {
       type: Date, 
       required: false},
     
@@ -35,9 +35,9 @@ PostSchema = new Schema({
 
 PostSchema.methods.create = function create(object, callback) {
   console.log('PostSchema rcvd object: \n', object);
-    if(!object.who)
-        //callback(new Error("PostSchema.methods.create: Bad arguments"));TODO
-	console.log("PostSchema.methods.create: Bad arguments,who ", object.who);
+    if(!object.who){
+        callback(new Error("PostSchema.methods.create: Bad arguments"));//TODO
+	console.log("PostSchema.methods.create: Bad arguments,who ", object.who);}
      else if(!object.visibility)
        console.log("PostSchema.methods.create: Bad arguments,visibility ", object.visibility);
      else if(!object.poll)
