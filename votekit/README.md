@@ -4,19 +4,22 @@ This is an API for use by apps for polling.
 
 It allows you to creat 3 kinds of polls:
 * Simple list
+* 
 * List with an option of 'Like' or 'Dislike'
+* 
 * List with an option of star rating
+* 
 
 It handles the following requests:
 ####GET
-  *Function*: Get all polls
-  *URL*: http://server-address:port/api/poll/
+  **Function**: Get all polls
+  **URL**: http://server-address:port/api/poll/
 
-  *Function*: Get recent x polls by author
-  *URL*: http://server-address:port/api/poll/get_recent_polls_by_author/:author/:x
+  **Function**: Get recent x polls by author
+  **URL**: http://server-address:port/api/poll/get_recent_polls_by_author/:author/:x
 
-  *Function*: Get poll by id
-  *URL*: http://server-address:port/api/poll/get_poll_by_id/:id
+  **Function**: Get poll by id
+  **URL**: http://server-address:port/api/poll/get_poll_by_id/:id
 
   *Function*: Get all polls by author
   *URL*: http://server-address:port/api/poll/get_poll_by_author/:author
