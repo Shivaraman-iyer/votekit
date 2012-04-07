@@ -36,7 +36,7 @@ PostSchema = new Schema({
 PostSchema.methods.create = function create(object, callback) {
   console.log('PostSchema rcvd object: \n', object);
     if(!object.who){
-        callback(new Error("PostSchema.methods.create: Bad arguments"));//TODO
+        //callback(new Error("PostSchema.methods.create: Bad arguments"));//TODO
 	console.log("PostSchema.methods.create: Bad arguments,who ", object.who);}
      else if(!object.visibility)
        console.log("PostSchema.methods.create: Bad arguments,visibility ", object.visibility);
