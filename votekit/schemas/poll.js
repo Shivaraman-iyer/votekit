@@ -70,10 +70,21 @@ PollSchema = new Schema({
     /* List of options
        */
     options_list: [{ 
-        type: Schema.ObjectId,
-	unique: true,
-        required: true
-        }]
+       content: {
+            type: String,
+            required: true
+	  
+        },
+	who_likes :[ {
+                type: String,
+                required: true,
+		unique:true
+            }],
+	who_dislikes :[ {
+                type: String,
+                required: true,
+		unique:true
+            }] }]
 });
 
 PollSchema.methods.create = function create(object, callback) {
@@ -112,7 +123,7 @@ PollSchema.methods.create = function create(object, callback) {
     this.options_type = object.options_type;
     
     if(object.options_list != undefined && object.options_list.length > 0)
-      this.options_list = object.options_list.slice();
+    {this.options_list = object.options_list.slice();}
     
     
         callback(null);
