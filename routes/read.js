@@ -106,6 +106,7 @@ app.get('/api/poll/get_num_of_likes/:id/:optionNum', function(req, res){
     if(err)
       res.send(err.message);
     else{
+      console.log('likes = \n', likes);
       res.send(likes);
     }
   });
@@ -117,10 +118,11 @@ app.get('/api/poll/get_num_of_likes/:id/:optionNum', function(req, res){
  * Returns number of dislikes for given option in poll
  */
 app.get('/api/poll/get_num_of_dislikes/:id/:optionNum', function(req, res){
-  getNumOfLikes(req.params.id, req.params.optionNum, function(err, dislikes){
+  getNumOfDislikes(req.params.id, req.params.optionNum, function(err, dislikes){
     if(err)
       res.send(err.message);
     else{
+      console.log(dislikes);
       res.send(dislikes);
     }
   });

@@ -56,7 +56,8 @@ getNumOfLikes = function(postId, optionNum, callback){
     else if(post.poll.poll_method != 'like-dislike')
       callback("Bad arguments");
     else{
-      	callback(null, post.poll.option_list[optionNum-1].who_likes.length);
+      
+      	callback(null, {likes : post.poll.options_list[optionNum - 1].who_likes.length});
       
     }
   });
@@ -65,10 +66,11 @@ getNumOfDislikes = function(postId, optionNum, callback){
   getPostById(postId, function(err, post){
     if(err)
       callback(err);
-    else if(post.poll.poll_method != 'list')
+    else if(post.poll.poll_method != 'like-dislike')
       callback("Bad arguments");
     else{
-      	callback(null, post.poll.option_list[optionNum-1].who_dislikes.length);
+      //console.log({dislikes:  post.poll.options_list[optionNum-1].who_dislikes.length});
+      	callback(null,{dislikes:  post.poll.options_list[optionNum-1].who_dislikes.length});
       
     }
   });

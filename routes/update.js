@@ -9,7 +9,7 @@
  * }
  */
 app.post('/api/poll/update/:id', function(req, res){
-   //console.log('You want to update: \n', req.params.id);
+   console.log('You want to update: \n', req.params.id);
   updatePostById(req.params.id, req.body, function(err){
    
     if(err){

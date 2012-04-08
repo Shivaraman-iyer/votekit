@@ -27,7 +27,7 @@ updatePostById = function(id, obj, callback){
 		      callback(err);
 		  });
 		}
-		if(option_num != undefined){
+		if(obj.option_num != undefined){
 		if(poll.poll_method === 'list')
 		  addVoteToList(poll, obj, function(err){if(err)callback(err)});
 		else if(poll.poll_method === 'stars')
@@ -94,7 +94,7 @@ addLikeDislike = function(poll, obj, callback){
 		  option.who_likes.push(obj.id);
 		else if(obj.choice === 'dislike')
 		  option.who_dislikes.push(obj.id);  
-		  //console.log(option.choosers);
+		  console.log(option.who_likes, option.who_likes);
 		  option.save(function(err){
 		    if(err){
 		      console.log(err);
