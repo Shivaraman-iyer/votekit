@@ -21,26 +21,33 @@ updatePostById = function(id, obj, callback){
 	      else {
 		if(obj.tags != undefined && obj.tags.length > 0){
 		  for(var i = 0; i < obj.tags.length; i++)
-		    poll.tags.push(obj.tags[i]);
+		    poll.tags.push(obj.tags[i]);}//end of for
+		    if(obj.option_num != undefined){
+		    if(choice == 'like')
+		      poll.options_list[obj.option_num].who_likes.push(obj.id);
+		    else if(choice == 'like')
+		      poll.options_list[obj.option_num].who_dislikes.push(obj.id);
+		    }
 		  poll.save(function(err){
 		    if(err)
 		      callback(err);
-		  });
-		}
-		if(obj.option_num != undefined){
+		  });//end of save
+		}//end of else
+		
+		/*if(obj.option_num != undefined){
 		if(poll.poll_method === 'list')
 		  addVoteToList(poll, obj, function(err){if(err)callback(err)});
 		else if(poll.poll_method === 'stars')
 		  addStar(poll, obj, function(err){if(err)callback(err)});
 		else if(poll.poll_method === 'like-dislike')
 		  addLikeDislike(poll, obj, function(err){if(err)callback(err)});
-		}
-	      }
-	});
-      }});
+		}*/
+	      });//end of func
+	}});
+      
 };
 
-addStar = function(poll, obj, callback){
+/*addStar = function(poll, obj, callback){
 VSchemas.OptionStar.findById(poll.options_list[obj.option_num - 1], function(err, option){
 		 // console.log(option._id);
 		 //TODO this is horrible
@@ -89,13 +96,8 @@ addVoteToList = function(poll, obj, callback){
 };
 
 addLikeDislike = function(poll, obj, callback){
-  VSchemas.OptionLikeDislike.findById(poll.options_list[obj.option_num - 1], function(err, option){
-		if(obj.choice === 'like')
-		  option.who_likes.push(obj.id);
-		else if(obj.choice === 'dislike')
-		  option.who_dislikes.push(obj.id);  
-		  console.log(option.who_likes, option.who_likes);
-		  option.save(function(err){
+  
+  option.save(function(err){
 		    if(err){
 		      console.log(err);
 		      callback(err);
