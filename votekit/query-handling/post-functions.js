@@ -19,7 +19,7 @@ function createPost(object, callback) {
     var i;
     
    // console.log('Number of options sent is = ', object.poll.options_list.length);
-    
+    /*
     for(i = 0; i < object.poll.options_list.length; i++){
 	if(object.poll.poll_method === 'stars'){
 	  optionStar = new VSchemas.OptionStar();
@@ -65,7 +65,7 @@ function createPost(object, callback) {
 	  
 	});
 	  options_obj[i] = optionList;
-    
+    */
     poll.create(object.poll, function(err) {  if(err) callback(err);  else {
     //create options objects also
     
@@ -77,19 +77,19 @@ function createPost(object, callback) {
 	post.create(object, function(err) { if(err) callback(err);  else {
 	
           
-	  callback(null, post, poll, options_obj);
+	  callback(null, post, poll);
         }});
     }});//end of poll.creat
 };
 
-function savePost(post, poll, options_obj, callback) {
+function savePost(post, poll, callback) {
     // save content first
     console.log('\nPOST: ', post);
     console.log('\nPOLL: ', poll);
-    console.log('\nOPTIONS: ', options_obj);
+    //console.log('\nOPTIONS: ', options_obj);
     var i;
         
-    for(i = 0; i < poll.options_list.length; i++){
+    /*for(i = 0; i < poll.options_list.length; i++){
 	
 	  options_obj[i].save(function(err){
 	    if(err)
@@ -97,7 +97,7 @@ function savePost(post, poll, options_obj, callback) {
 	    
 	  });
 	
-	}
+	}*/
     
     poll.save( function(err) {   
       if(err) { console.log(err);  }  
@@ -118,8 +118,8 @@ function savePost(post, poll, options_obj, callback) {
 
 publish = function publishPost(object, callback) {
   //console.log('publishing: ', object); 
-  createPost(object, function(err, post, poll, options_obj) {   if(err) callback(err);  else {
-        savePost(post, poll, options_obj, function(err, postId) { if(err) callback(err);  else {
+  createPost(object, function(err, post, poll) {   if(err) callback(err);  else {
+        savePost(post, poll,  function(err, postId) { if(err) callback(err);  else {
           callback(null, postId);
                 }});
     }});

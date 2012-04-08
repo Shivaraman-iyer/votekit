@@ -5,7 +5,7 @@ require('./query-handling/advanced-get-functions.js');
 require('./query-handling/post-functions.js');
 require('./query-handling/put-functions.js');
 require('./query-handling/delete-functions.js');
-require('./query-handling/utils.js');
+//require('./query-handling/utils.js');
 
  
 module.exports.connect = function(server, db, callback) {
@@ -19,14 +19,14 @@ module.exports.disconnect = function() {
 }
 //GET
 module.exports.getPostById = getPostById;
-module.exports.getOptions = getOptions;
+//module.exports.getOptions = getOptions;
 module.exports.getAllPosts = getAllPosts;
 module.exports.getPostsByAuthor = getPostsByAuthor;
 module.exports.getRecentPollsOfAuthor = getRecentPollsOfAuthor; 
 module.exports.getRecentPollsByDate = getRecentPollsByDate; 
 
-module.exports.getAvgStarRating = getAvgStarRating;
-module.exports.getNumOfVotes = getNumOfVotes; 
+//module.exports.getAvgStarRating = getAvgStarRating;
+//module.exports.getNumOfVotes = getNumOfVotes; 
 module.exports.getNumOfLikes = getNumOfLikes; 
 module.exports.getNumOfDislikes = getNumOfDislikes; 
 //POST 
