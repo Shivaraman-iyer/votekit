@@ -33,7 +33,8 @@ module.exports.getNumOfDislikes = getNumOfDislikes;
 module.exports.publishPoll = publish;
 
 //PUT
-module.exports.updatePostById = updatePostById;
+module.exports.updatePostById_likes = updatePostById_likes;
+module.exports.updatePostById_dislikes = updatePostById_dislikes;
 //DELETE
 module.exports.deletPostById = deletePostById;
  

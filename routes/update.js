@@ -21,7 +21,7 @@ app.post('/api/poll/update/:id', function(req, res){
 	    
         }
         });
-});
+
 else
   updatePostById_dislikes(req.params.id, req.body, function(err, numAffected){
    
