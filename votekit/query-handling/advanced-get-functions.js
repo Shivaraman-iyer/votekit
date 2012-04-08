@@ -18,7 +18,7 @@ getAvgStarRating = function(postId, optionNum, callback){
       callback("Bad arguments");
     else{
       
-      var option = post.poll.option_list[optionNum - 1];
+      var option = post.poll.options_list[optionNum - 1];
 	avg = (option.whoChose1.length+
 	      (option.whoChose2.length * 2)+
 	      (option.whoChose3.length * 3)+
@@ -30,7 +30,7 @@ getAvgStarRating = function(postId, optionNum, callback){
 		option.whoChose4.length +
 		option.whoChose5.length);
 	
-	callback(null, avg);
+	callback(null, {avg_rating : avg});
       
     }
   });
@@ -43,7 +43,8 @@ getNumOfVotes = function(postId, optionNum, callback){
     else if(post.poll.poll_method != 'list')
       callback("Bad arguments");
     else{
-      	callback(null, post.poll.option_list[optionNum-1].choosers.length);
+      
+      	callback(null, {votes : post.poll.options_list[optionNum - 1].choosers.length});
       
     }
   });
@@ -53,11 +54,12 @@ getNumOfLikes = function(postId, optionNum, callback){
   getPostById(postId, function(err, post){
     if(err)
       callback(err);
-    else if(post.poll.poll_method != 'like-dislike')
+    else if(post.poll.poll_method != 'like-dislike')//TODO make this the first condition
       callback("Bad arguments");
     else{
-      
-      	callback(null, {likes : post.poll.options_list[optionNum - 1].who_likes.length});
+      obj = (post.poll.options_list[optionNum-1]);//this is done twice because the first GET request after server starts does not expand options. Can be removed once this is fixed.
+      console.log(obj);
+      callback(null, {likes : post.poll.options_list[optionNum - 1].who_likes.length});
       
     }
   });
@@ -69,7 +71,7 @@ getNumOfDislikes = function(postId, optionNum, callback){
     else if(post.poll.poll_method != 'like-dislike')
       callback("Bad arguments");
     else{
-      //console.log({dislikes:  post.poll.options_list[optionNum-1].who_dislikes.length});
+        obj = (post.poll.options_list[optionNum-1]);
       	callback(null,{dislikes:  post.poll.options_list[optionNum-1].who_dislikes.length});
       
     }
