@@ -1,25 +1,38 @@
 /*
  * Put data in this format to add votes
  * {
- * option_num: <>
- * stars_num: <> //If the schema has star rating
  * choice: 'like' or 'dislike'
- * tags: <array of tags>,
+ * content: e.g football or an image id,
  * id: <>//Id of chooser
  * }
  */
 app.post('/api/poll/update/:id', function(req, res){
-   console.log('You want to update: \n', req.params.id);
-  updatePostById(req.params.id, req.body, function(err){
+ //  console.log('You want to update: \n', req.params.id);
+   //console.log('New data: ', req.body);
+   if(req.body.choice === 'like')
+  updatePostById_likes(req.params.id, req.body, function(err, numAffected){
    
     if(err){
             console.log(err.message);
-           // res.redirect('/');TODO needed?
+         	    
+        }
+        else{
+            console.log(numAffected, ' docs updated.\n');
+	    
+        }
+        });
+});
+else
+  updatePostById_dislikes(req.params.id, req.body, function(err, numAffected){
+   
+    if(err){
+            console.log(err.message);
+         
 	    
         }
         else{
-            //console.log(numAffected, ' docs were updated.\n');
-          //  res.redirect('/');TODO needed?
+            console.log(numAffected, ' docs updated.\n');
+         
         }
         });
 });

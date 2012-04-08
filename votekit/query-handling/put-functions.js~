@@ -24,7 +24,7 @@ VSchemas.Poll.update({_id:post.poll, 'options_list.content':objNew.content}, {$p
 updatePostById_dislikes = function(postId, objNew, callback){
   //var n = objNew.option_num - 1;
   VSchemas.Post.findById(postId, function(err, post){
-VSchemas.Poll.update({_id:post.poll, 'options_list.content':objNew.content}, {$push: {'options_list.1.who_dislikes': objNew.id}}, {upsert:false}, function(err, numAffected){
+VSchemas.Poll.update({_id:post.poll, 'options_list.content':objNew.content}, {$push: {'options_list.1.who_likes': objNew.id}}, {upsert:false}, function(err, numAffected){
   if(err){
     console.log(err.message);
     callback(err);
