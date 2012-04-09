@@ -123,7 +123,9 @@ PollSchema.methods.create = function create(object, callback) {
     this.options_type = object.options_type;
     
     if(object.options_list != undefined && object.options_list.length > 0)
-    {this.options_list = object.options_list.slice();}
+    {this.options_list = object.options_list.slice();
+      
+    }
     
     
         callback(null);

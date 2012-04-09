@@ -6,10 +6,11 @@ function trim(s) {
 	return s;
 }
 //YOURSCHEMA.update({_id:"DocumentObjectid","ArrayName.id":"ArrayElementId"},{$set:{"ArrayName.$.TheParameter":"newValue"}},{upsert: true}, function(err){..});
+
 updatePostById_likes = function(postId, objNew, callback){
-  //var n = objNew.option_num - 1;
-  VSchemas.Post.findById(postId, function(err, post){
-VSchemas.Poll.update({_id:post.poll, 'options_list.content':objNew.content}, {$push: {'options_list.1.who_likes': objNew.id}}, {upsert:false}, function(err, numAffected){
+  if(objNew.option_num == 1)
+  VSchemas.Post.findById(postId, function( err, post){
+    VSchemas.Poll.update({_id:post.poll}, {$push: {'options_list.0.who_likes':objNew.id}}, {upsert:true}, function(err, numAffected){
   if(err){
     console.log(err.message);
     callback(err);
@@ -20,11 +21,139 @@ VSchemas.Poll.update({_id:post.poll, 'options_list.content':objNew.content}, {$p
   }
 });
 });
+  else
+    if(objNew.option_num == 2)
+  VSchemas.Post.findById(postId, function( err, post){
+    VSchemas.Poll.update({_id:post.poll}, {$push: {'options_list.1.who_likes':objNew.id}}, {upsert:true}, function(err, numAffected){
+  if(err){
+    console.log(err.message);
+    callback(err);
+  }
+  else{
+    console.log(numAffected);
+    callback(null, numAffected);
+  }
+});
+});
+  else
+    if(objNew.option_num == 3)
+  VSchemas.Post.findById(postId, function( err, post){
+    VSchemas.Poll.update({_id:post.poll}, {$push: {'options_list.2.who_likes':objNew.id}}, {upsert:true}, function(err, numAffected){
+  if(err){
+    console.log(err.message);
+    callback(err);
+  }
+  else{
+    console.log(numAffected);
+    callback(null, numAffected);
+  }
+});
+});
+  else
+    if(objNew.option_num == 4)
+  VSchemas.Post.findById(postId, function( err, post){
+    VSchemas.Poll.update({_id:post.poll}, {$push: {'options_list.3.who_likes':objNew.id}}, {upsert:true}, function(err, numAffected){
+  if(err){
+    console.log(err.message);
+    callback(err);
+  }
+  else{
+    console.log(numAffected);
+    callback(null, numAffected);
+  }
+});
+});
+  else
+    if(objNew.option_num == 5)
+  VSchemas.Post.findById(postId, function( err, post){
+    VSchemas.Poll.update({_id:post.poll}, {$push: {'options_list.4.who_likes':objNew.id}}, {upsert:true}, function(err, numAffected){
+  if(err){
+    console.log(err.message);
+    callback(err);
+  }
+  else{
+    console.log(numAffected);
+    callback(null, numAffected);
+  }
+});
+});
+  else
+    if(objNew.option_num == 6)
+  VSchemas.Post.findById(postId, function( err, post){
+    VSchemas.Poll.update({_id:post.poll}, {$push: {'options_list.5.who_likes':objNew.id}}, {upsert:true}, function(err, numAffected){
+  if(err){
+    console.log(err.message);
+    callback(err);
+  }
+  else{
+    console.log(numAffected);
+    callback(null, numAffected);
+  }
+});
+});
+  else
+    if(objNew.option_num == 7)
+  VSchemas.Post.findById(postId, function( err, post){
+    VSchemas.Poll.update({_id:post.poll}, {$push: {'options_list.6.who_likes':objNew.id}}, {upsert:true}, function(err, numAffected){
+  if(err){
+    console.log(err.message);
+    callback(err);
+  }
+  else{
+    console.log(numAffected);
+    callback(null, numAffected);
+  }
+});
+});
+  else
+    if(objNew.option_num == 8)
+  VSchemas.Post.findById(postId, function( err, post){
+    VSchemas.Poll.update({_id:post.poll}, {$push: {'options_list.7.who_likes':objNew.id}}, {upsert:true}, function(err, numAffected){
+  if(err){
+    console.log(err.message);
+    callback(err);
+  }
+  else{
+    console.log(numAffected);
+    callback(null, numAffected);
+  }
+});
+});
+  else
+    if(objNew.option_num == 9)
+  VSchemas.Post.findById(postId, function( err, post){
+    VSchemas.Poll.update({_id:post.poll}, {$push: {'options_list.8.who_likes':objNew.id}}, {upsert:true}, function(err, numAffected){
+  if(err){
+    console.log(err.message);
+    callback(err);
+  }
+  else{
+    console.log(numAffected);
+    callback(null, numAffected);
+  }
+});
+});
+  else
+    if(objNew.option_num == 10)
+  VSchemas.Post.findById(postId, function( err, post){
+    VSchemas.Poll.update({_id:post.poll}, {$push: {'options_list.9.who_likes':objNew.id}}, {upsert:true}, function(err, numAffected){
+  if(err){
+    console.log(err.message);
+    callback(err);
+  }
+  else{
+    console.log(numAffected);
+    callback(null, numAffected);
+  }
+});
+});
+  
+  
 };
 updatePostById_dislikes = function(postId, objNew, callback){
-  //var n = objNew.option_num - 1;
-  VSchemas.Post.findById(postId, function(err, post){
-VSchemas.Poll.update({_id:post.poll, 'options_list.content':objNew.content}, {$push: {'options_list.1.who_dislikes': objNew.id}}, {upsert:false}, function(err, numAffected){
+  if(objNew.option_num == 1)
+  VSchemas.Post.findById(postId, function( err, post){
+    VSchemas.Poll.update({_id:post.poll}, {$push: {'options_list.0.who_dislikes':objNew.id}}, {upsert:true}, function(err, numAffected){
   if(err){
     console.log(err.message);
     callback(err);
@@ -35,6 +164,133 @@ VSchemas.Poll.update({_id:post.poll, 'options_list.content':objNew.content}, {$p
   }
 });
 });
+  else
+    if(objNew.option_num == 2)
+  VSchemas.Post.findById(postId, function( err, post){
+    VSchemas.Poll.update({_id:post.poll}, {$push: {'options_list.1.who_dislikes':objNew.id}}, {upsert:true}, function(err, numAffected){
+  if(err){
+    console.log(err.message);
+    callback(err);
+  }
+  else{
+    console.log(numAffected);
+    callback(null, numAffected);
+  }
+});
+});
+  else
+    if(objNew.option_num == 3)
+  VSchemas.Post.findById(postId, function( err, post){
+    VSchemas.Poll.update({_id:post.poll}, {$push: {'options_list.2.who_dislikes':objNew.id}}, {upsert:true}, function(err, numAffected){
+  if(err){
+    console.log(err.message);
+    callback(err);
+  }
+  else{
+    console.log(numAffected);
+    callback(null, numAffected);
+  }
+});
+});
+  else
+    if(objNew.option_num == 4)
+  VSchemas.Post.findById(postId, function( err, post){
+    VSchemas.Poll.update({_id:post.poll}, {$push: {'options_list.3.who_dislikes':objNew.id}}, {upsert:true}, function(err, numAffected){
+  if(err){
+    console.log(err.message);
+    callback(err);
+  }
+  else{
+    console.log(numAffected);
+    callback(null, numAffected);
+  }
+});
+});
+  else
+    if(objNew.option_num == 5)
+  VSchemas.Post.findById(postId, function( err, post){
+    VSchemas.Poll.update({_id:post.poll}, {$push: {'options_list.4.who_dislikes':objNew.id}}, {upsert:true}, function(err, numAffected){
+  if(err){
+    console.log(err.message);
+    callback(err);
+  }
+  else{
+    console.log(numAffected);
+    callback(null, numAffected);
+  }
+});
+});
+  else
+    if(objNew.option_num == 6)
+  VSchemas.Post.findById(postId, function( err, post){
+    VSchemas.Poll.update({_id:post.poll}, {$push: {'options_list.5.who_dislikes':objNew.id}}, {upsert:true}, function(err, numAffected){
+  if(err){
+    console.log(err.message);
+    callback(err);
+  }
+  else{
+    console.log(numAffected);
+    callback(null, numAffected);
+  }
+});
+});
+  else
+    if(objNew.option_num == 7)
+  VSchemas.Post.findById(postId, function( err, post){
+    VSchemas.Poll.update({_id:post.poll}, {$push: {'options_list.6.who_dislikes':objNew.id}}, {upsert:true}, function(err, numAffected){
+  if(err){
+    console.log(err.message);
+    callback(err);
+  }
+  else{
+    console.log(numAffected);
+    callback(null, numAffected);
+  }
+});
+});
+  else
+    if(objNew.option_num == 8)
+  VSchemas.Post.findById(postId, function( err, post){
+    VSchemas.Poll.update({_id:post.poll}, {$push: {'options_list.7.who_dislikes':objNew.id}}, {upsert:true}, function(err, numAffected){
+  if(err){
+    console.log(err.message);
+    callback(err);
+  }
+  else{
+    console.log(numAffected);
+    callback(null, numAffected);
+  }
+});
+});
+  else
+    if(objNew.option_num == 9)
+  VSchemas.Post.findById(postId, function( err, post){
+    VSchemas.Poll.update({_id:post.poll}, {$push: {'options_list.8.who_dislikes':objNew.id}}, {upsert:true}, function(err, numAffected){
+  if(err){
+    console.log(err.message);
+    callback(err);
+  }
+  else{
+    console.log(numAffected);
+    callback(null, numAffected);
+  }
+});
+});
+  else
+    if(objNew.option_num == 10)
+  VSchemas.Post.findById(postId, function( err, post){
+    VSchemas.Poll.update({_id:post.poll}, {$push: {'options_list.9.who_dislikes':objNew.id}}, {upsert:true}, function(err, numAffected){
+  if(err){
+    console.log(err.message);
+    callback(err);
+  }
+  else{
+    console.log(numAffected);
+    callback(null, numAffected);
+  }
+});
+});
+  
 };
 
 /*
@@ -323,7 +579,7 @@ updatePoll = function(poll, objNew, callback){
 updateOptions = function(options, objNew_list, callback){
   
 };
-  /*VSchemas.Post.update({ _id:id}, {who: "aakriti"}, {upsert:false}, function(err){
+  /*VSchemas.Post.update({ _id:id}, {who: "aakriti"}, {upsert:true}, function(err){
    // console.log(id);
    if(err){
      console.log('when finding post by id, before updating: ', err.message);
