@@ -90,13 +90,13 @@ PollSchema = new Schema({
 PollSchema.methods.create = function create(object, callback) {
  console.log('PollSchema rcvd object: \n', object);
     if(!object.des_content_type)
-      console.log("PollSchema.methods.create: Bad arguments, des_content_type", object.des_content_type);
+      callback(new Error("PollSchema.methods.create: Bad arguments, des_content_type", object.des_content_type));
       else if(!object.options_type)
-	console.log("PollSchema.methods.create: Bad arguments, options_type", object.options_type);
+	callback(new Error("PollSchema.methods.create: Bad arguments, options_type", object.options_type));
 	else if(!object.description)
-	  console.log("PollSchema.methods.create: Bad arguments, decription", object.description);
+	  callback(new Error("PollSchema.methods.create: Bad arguments, decription", object.description));
 	else if(!object.poll_method)
-	  console.log("PollSchema.methods.create: Bad arguments, poll_metho", object.poll_method);
+	  callback(new Error("PollSchema.methods.create: Bad arguments, poll_metho", object.poll_method));
 	else if(object.options_list.length < 1) 
         //callback(new Error("PollSchema.methods.create: Bad arguments"));TODO Error class?
     callback(new Error("PollSchema.methods.create: Bad arguments, options list", object.option_list.length));
