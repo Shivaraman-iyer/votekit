@@ -27,12 +27,24 @@ else
    
     if(err){
             console.log(err.message);
-         
-	    
-        }
+    }
         else{
             console.log(numAffected, ' docs updated.\n');
-         
+
         }
         });
 });
+app.post('/api/poll/expire/:id', function(req, res){
+  if(req.body.expiry_date != undefined)
+    updateExpiryDate(req.params.id, req.body, function(err, numAffected){
+    if(err){
+            console.log(err.message);
+         	    
+        }
+        else{
+            console.log(numAffected, ' docs updated.\n');
+	    
+        }
+      
+    });
+};
