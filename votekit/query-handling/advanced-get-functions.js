@@ -115,7 +115,7 @@ getRecentPollsByDate = function(x, callback){
 getRecentPollsOfAuthor = function(author, x, callback){
   var result = [];
   var obj;
-  VSchemas.Post.find({"who":author}).sort(Date.now, -1).limit(x).run(function(err, posts){
+  VSchemas.Post.find({"who":author}).sort("when", 'descending').limit(x).run(function(err, posts){
      if(err) callback(err);
 		       else{
 			 if(!posts.length){

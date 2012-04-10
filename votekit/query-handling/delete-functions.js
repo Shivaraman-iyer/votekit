@@ -4,7 +4,7 @@ deletePostById = function(id, callback){
   if (!docs || !Array.isArray(docs) || docs.length === 0) 
     callback(new Error('No matching documents found.'));
   docs.forEach( function (doc) {
-    console.log(doc);
+    console.log('Matching doc found:\n',doc);
     doc.remove();
   });
 });

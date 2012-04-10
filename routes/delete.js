@@ -1,4 +1,4 @@
-app.delete('/api/poll/:id', function(req, res){
+app.post('/api/poll/delete/:id', function(req, res){
   console.log('In delete post');
   deletePostById(req.params.id, function(err){
     if(err)
