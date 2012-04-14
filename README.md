@@ -13,6 +13,10 @@ It allows you to creat 3 kinds of polls:
 
 Refer to votekit/schemas for Schema designs
 
+#### Installation and running the server
+Install node.js, express.js, mongoose.js and mongoDB. Download this repository and run 'node server.js'
+
+
 It handles the following requests:
 ####GET
   **Function**: Get all polls
@@ -75,6 +79,5 @@ It handles the following requests:
   **URL**: http://server-address:port/api/poll
   
 #### PUT
-  **Function**: Update votes or tags
-  
-  **URL**: http://server-address:port/api/poll/:id
+  **Function**: Update votes  
+  **URL**: http://server-address:port/api/poll/update/:choice/:option_num/:id
