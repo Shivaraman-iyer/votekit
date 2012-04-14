@@ -11,9 +11,10 @@ PostSchema = new Schema({
     /* Expiry date is not always required. 
        Will be included if application wants to have one, might need a calnedar for it.*/
     expiry_date: {
-      type: Date, 
-      default: "01-JAN-2000",
-      required: true},
+      type: Date 
+      //default: "01-JAN-2000",
+      //required: true},
+    },
     
       /* Defines to whom the post is visible
        TO-DO: Add list of people it is visible.
